@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111827;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 25px;
+    background: #1d4ed8;
+}
+
+h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+main {
+    padding: 20px;
+}
+
+.card {
+    background: #1f2937;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.card h2 {
+    margin-top: 0;
+}
