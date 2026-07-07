@@ -1,77 +1,81 @@
 function entrar(){
 
-    let usuario = document.getElementById("usuario").value;
-    let senha = document.getElementById("senha").value;
+    const usuarioDigitado = document.getElementById("usuario").value;
+    const senhaDigitada = document.getElementById("senha").value;
 
 
-    let usuarios = [
+    const usuarios = [
 
         {
-            nome:"Laércio",
-            usuario:"laercio",
-            senha:"1234",
-            perfil:"Administrador"
+            usuario: "laercio",
+            senha: "1234",
+            nome: "Laércio",
+            perfil: "Administrador"
         },
 
         {
-            nome:"Tainá",
-            usuario:"taina",
-            senha:"1234",
-            perfil:"Responsável"
+            usuario: "taina",
+            senha: "1234",
+            nome: "Tainá",
+            perfil: "Responsável"
         },
 
         {
-            nome:"Ana Clara",
-            usuario:"anaclara",
-            senha:"1234",
-            perfil:"Filha"
+            usuario: "anaclara",
+            senha: "1234",
+            nome: "Ana Clara",
+            perfil: "Filha"
         },
 
         {
-            nome:"Isadora",
-            usuario:"isadora",
-            senha:"1234",
-            perfil:"Filha"
+            usuario: "isadora",
+            senha: "1234",
+            nome: "Isadora",
+            perfil: "Filha"
         },
 
         {
-            nome:"Isaac",
-            usuario:"isaac",
-            senha:"1234",
-            perfil:"Filho"
+            usuario: "isaac",
+            senha: "1234",
+            nome: "Isaac",
+            perfil: "Filho"
         }
 
     ];
 
 
-    let encontrado = usuarios.find(
+    const usuarioEncontrado = usuarios.find(
+
         pessoa =>
-        pessoa.usuario === usuario &&
-        pessoa.senha === senha
+        pessoa.usuario === usuarioDigitado &&
+        pessoa.senha === senhaDigitada
+
     );
 
 
-    if(encontrado){
+    if(usuarioEncontrado){
+
 
         localStorage.setItem(
-            "usuario",
-            encontrado.nome
+            "nome",
+            usuarioEncontrado.nome
         );
 
 
         localStorage.setItem(
             "perfil",
-            encontrado.perfil
+            usuarioEncontrado.perfil
         );
 
 
-        window.location.href="dashboard.html";
+        window.location.href = "dashboard.html";
 
-    }
 
-    else{
+    } else {
+
 
         alert("Usuário ou senha incorretos");
+
 
     }
 
