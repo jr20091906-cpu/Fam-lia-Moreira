@@ -5,60 +5,199 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
+
 body{
-    background:linear-gradient(180deg,#0f172a,#1e293b);
-    color:#fff;
+
     min-height:100vh;
+    background:
+    linear-gradient(
+    180deg,
+    #0f172a,
+    #14532d
+    );
+
+    color:white;
+
 }
 
-header{
+
+.app{
+
+    min-height:100vh;
+    padding-bottom:40px;
+
+}
+
+
+.topo{
+
     text-align:center;
     padding:30px 20px;
+
 }
 
-header h1{
+
+.topo h1{
+
     font-size:32px;
     margin-bottom:10px;
+
 }
 
-header p{
-    color:#cbd5e1;
+
+.topo p{
+
+    color:#d1fae5;
+    font-size:16px;
+
 }
 
-.tree{
+
+
+.arvore{
+
     display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:25px;
-    padding:30px;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+
 }
 
-.member{
-    width:140px;
+
+
+.membro{
+
     text-align:center;
+    margin:20px;
+
 }
 
-.member a{
-    text-decoration:none;
+
+.membro a{
+
     color:white;
+    text-decoration:none;
+
 }
 
-.member img{
+
+
+.balao{
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:6px solid #22c55e;
+
+    background:#ffffff;
+
+    margin:auto;
+
+    box-shadow:
+    0 0 25px rgba(34,197,94,.6);
+
+    animation:flutuar 3s infinite ease-in-out;
+
+}
+
+
+
+.balao img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+
+.balao.pequeno{
+
     width:120px;
     height:120px;
-    border-radius:50%;
-    border:4px solid #22c55e;
-    background:#ffffff;
-    transition:0.3s;
+
 }
 
-.member img:hover{
+
+
+.membro h2{
+
+    margin-top:12px;
+
+    font-size:20px;
+
+}
+
+
+
+.membro span{
+
+    color:#bbf7d0;
+
+    font-size:14px;
+
+}
+
+
+
+.linha{
+
+    width:5px;
+
+    height:50px;
+
+    background:#22c55e;
+
+}
+
+
+
+.filhos{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+
+
+.membro:hover .balao{
+
     transform:scale(1.08);
+
     border-color:#38bdf8;
+
 }
 
-.member p{
-    margin-top:10px;
-    font-size:18px;
-    font-weight:bold;
+
+
+@keyframes flutuar{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
 }
