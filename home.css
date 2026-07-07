@@ -1,0 +1,193 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(180deg,#062e1a,#14532d);
+
+    color:white;
+
+}
+
+
+
+.familia{
+
+    min-height:100vh;
+
+    padding:30px 20px;
+
+}
+
+
+
+header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+
+header h1{
+
+    font-size:38px;
+
+    letter-spacing:1px;
+
+}
+
+
+
+header p{
+
+    margin-top:10px;
+
+    color:#dcfce7;
+
+    font-size:16px;
+
+}
+
+
+
+.baloes{
+
+    display:grid;
+
+    grid-template-columns:repeat(2, 1fr);
+
+    gap:35px 25px;
+
+    max-width:500px;
+
+    margin:auto;
+
+}
+
+
+
+.baloes a{
+
+    text-decoration:none;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+
+
+.balao{
+
+    width:130px;
+
+    height:130px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:
+
+    linear-gradient(145deg,#22c55e,#15803d);
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    font-size:40px;
+
+    font-weight:bold;
+
+
+    border:5px solid rgba(255,255,255,.8);
+
+
+    box-shadow:
+
+    0 10px 25px rgba(0,0,0,.35);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.balao:hover{
+
+    transform:scale(1.08);
+
+}
+
+
+
+.baloes span{
+
+    display:block;
+
+    margin-top:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+
+
+.baloes a:last-child{
+
+    grid-column:1 / 3;
+
+}
+
+
+
+.baloes a:last-child .balao{
+
+    background:
+
+    linear-gradient(145deg,#38bdf8,#0284c7);
+
+}
+
+
+
+@media(max-width:450px){
+
+    .balao{
+
+        width:110px;
+
+        height:110px;
+
+        font-size:34px;
+
+    }
+
+
+    header h1{
+
+        font-size:30px;
+
+    }
+
+}
