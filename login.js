@@ -1,81 +1,109 @@
+let membroSelecionado = "";
+
+
+
+const parametros = new URLSearchParams(
+    window.location.search
+);
+
+
+membroSelecionado = parametros.get("usuario");
+
+
+
+const usuarios = {
+
+
+    laercio:{
+        nome:"Laércio",
+        senha:"1234",
+        perfil:"Administrador"
+    },
+
+
+    taina:{
+        nome:"Tainá",
+        senha:"1234",
+        perfil:"Responsável"
+    },
+
+
+    anaclara:{
+        nome:"Ana Clara",
+        senha:"1234",
+        perfil:"Filha"
+    },
+
+
+    isadora:{
+        nome:"Isadora",
+        senha:"1234",
+        perfil:"Filha"
+    },
+
+
+    isaac:{
+        nome:"Isaac",
+        senha:"1234",
+        perfil:"Filho"
+    }
+
+
+};
+
+
+
+if(usuarios[membroSelecionado]){
+
+
+    document.getElementById("nomeMembro").innerHTML =
+    "Olá, " + usuarios[membroSelecionado].nome;
+
+
+}
+
+
+
 function entrar(){
 
-    const usuarioDigitado = document.getElementById("usuario").value;
-    const senhaDigitada = document.getElementById("senha").value;
+
+    let senhaDigitada =
+    document.getElementById("senha").value;
 
 
-    const usuarios = [
 
-        {
-            usuario:"laercio",
-            senha:"1234",
-            nome:"Laércio",
-            perfil:"Administrador"
-        },
-
-        {
-            usuario:"taina",
-            senha:"1234",
-            nome:"Tainá",
-            perfil:"Responsável"
-        },
-
-        {
-            usuario:"anaclara",
-            senha:"1234",
-            nome:"Ana Clara",
-            perfil:"Filha"
-        },
-
-        {
-            usuario:"isadora",
-            senha:"1234",
-            nome:"Isadora",
-            perfil:"Filha"
-        },
-
-        {
-            usuario:"isaac",
-            senha:"1234",
-            nome:"Isaac",
-            perfil:"Filho"
-        }
-
-    ];
+    let usuario =
+    usuarios[membroSelecionado];
 
 
-    const encontrado = usuarios.find(
 
-        pessoa =>
-        pessoa.usuario === usuarioDigitado &&
-        pessoa.senha === senhaDigitada
+    if(usuario && senhaDigitada === usuario.senha){
 
-    );
-
-
-    if(encontrado){
 
         localStorage.setItem(
             "nome",
-            encontrado.nome
+            usuario.nome
         );
 
 
         localStorage.setItem(
             "perfil",
-            encontrado.perfil
+            usuario.perfil
         );
 
 
         window.location.href="dashboard.html";
 
 
-    }else{
+    }
+
+    else{
 
 
-        alert("Usuário ou senha incorretos");
+        alert("Senha incorreta");
 
 
     }
+
 
 }
