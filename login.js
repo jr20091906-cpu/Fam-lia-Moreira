@@ -7,44 +7,44 @@ function entrar(){
     const usuarios = [
 
         {
-            usuario: "laercio",
-            senha: "1234",
-            nome: "Laércio",
-            perfil: "Administrador"
+            usuario:"laercio",
+            senha:"1234",
+            nome:"Laércio",
+            perfil:"Administrador"
         },
 
         {
-            usuario: "taina",
-            senha: "1234",
-            nome: "Tainá",
-            perfil: "Responsável"
+            usuario:"taina",
+            senha:"1234",
+            nome:"Tainá",
+            perfil:"Responsável"
         },
 
         {
-            usuario: "anaclara",
-            senha: "1234",
-            nome: "Ana Clara",
-            perfil: "Filha"
+            usuario:"anaclara",
+            senha:"1234",
+            nome:"Ana Clara",
+            perfil:"Filha"
         },
 
         {
-            usuario: "isadora",
-            senha: "1234",
-            nome: "Isadora",
-            perfil: "Filha"
+            usuario:"isadora",
+            senha:"1234",
+            nome:"Isadora",
+            perfil:"Filha"
         },
 
         {
-            usuario: "isaac",
-            senha: "1234",
-            nome: "Isaac",
-            perfil: "Filho"
+            usuario:"isaac",
+            senha:"1234",
+            nome:"Isaac",
+            perfil:"Filho"
         }
 
     ];
 
 
-    const usuarioEncontrado = usuarios.find(
+    const encontrado = usuarios.find(
 
         pessoa =>
         pessoa.usuario === usuarioDigitado &&
@@ -53,25 +53,24 @@ function entrar(){
     );
 
 
-    if(usuarioEncontrado){
-
+    if(encontrado){
 
         localStorage.setItem(
             "nome",
-            usuarioEncontrado.nome
+            encontrado.nome
         );
 
 
         localStorage.setItem(
             "perfil",
-            usuarioEncontrado.perfil
+            encontrado.perfil
         );
 
 
-        window.location.href = "dashboard.html";
+        window.location.href="dashboard.html";
 
 
-    } else {
+    }else{
 
 
         alert("Usuário ou senha incorretos");
