@@ -34,7 +34,7 @@
 
 <div class="foto-perfil">
 
-📷
+<img id="fotoMembro" src="" alt="Foto do membro">
 
 </div>
 
@@ -79,27 +79,32 @@ const membros = {
 
     laercio:{
         nome:"Laércio",
-        perfil:"Administrador 👑"
+        perfil:"Administrador 👑",
+        foto:"fotos/laercio.jpg"
     },
 
     taina:{
         nome:"Tainá",
-        perfil:"Responsável"
+        perfil:"Responsável",
+        foto:"fotos/taina.jpg"
     },
 
     anaclara:{
         nome:"Ana Clara",
-        perfil:"Filha"
+        perfil:"Filha",
+        foto:"fotos/anaclara.jpg"
     },
 
     isadora:{
         nome:"Isadora",
-        perfil:"Filha"
+        perfil:"Filha",
+        foto:"fotos/isadora.jpg"
     },
 
     isaac:{
         nome:"Isaac",
-        perfil:"Filho"
+        perfil:"Filho",
+        foto:"fotos/isaac.jpg"
     }
 
 };
@@ -111,14 +116,21 @@ const url = new URLSearchParams(window.location.search);
 const membroSelecionado = url.get("membro");
 
 
+
 if(membroSelecionado && membros[membroSelecionado]){
 
-    document.getElementById("nomeMembro").innerHTML =
-    membros[membroSelecionado].nome;
+
+document.getElementById("nomeMembro").innerHTML =
+membros[membroSelecionado].nome;
 
 
-    document.getElementById("tipoMembro").innerHTML =
-    membros[membroSelecionado].perfil;
+document.getElementById("tipoMembro").innerHTML =
+membros[membroSelecionado].perfil;
+
+
+document.getElementById("fotoMembro").src =
+membros[membroSelecionado].foto;
+
 
 }
 
