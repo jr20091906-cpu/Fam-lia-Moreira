@@ -5,188 +5,125 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
-
 body{
 
     min-height:100vh;
 
-    background:
-    linear-gradient(180deg,#062e1a,#14532d);
+    background:linear-gradient(180deg,#0b3d2e,#14532d);
 
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+.familia{
+
+    width:100%;
+    max-width:900px;
+    text-align:center;
     color:white;
 
 }
 
+header h1{
 
-
-.familia{
-
-    min-height:100vh;
-
-    padding:30px 20px;
+    font-size:34px;
+    margin-bottom:10px;
 
 }
 
+header p{
 
-
-header{
-
-    text-align:center;
-
+    color:#d1fae5;
     margin-bottom:40px;
 
 }
 
-
-
-header h1{
-
-    font-size:38px;
-
-    letter-spacing:1px;
-
-}
-
-
-
-header p{
-
-    margin-top:10px;
-
-    color:#dcfce7;
-
-    font-size:16px;
-
-}
-
-
-
 .baloes{
 
-    display:grid;
-
-    grid-template-columns:repeat(2, 1fr);
-
-    gap:35px 25px;
-
-    max-width:500px;
-
-    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:30px;
 
 }
-
-
 
 .baloes a{
 
     text-decoration:none;
-
     color:white;
-
-    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 
 }
-
-
 
 .balao{
 
-    width:130px;
-
-    height:130px;
-
-    margin:auto;
+    width:120px;
+    height:120px;
 
     border-radius:50%;
 
-    background:
+    overflow:hidden;
 
-    linear-gradient(145deg,#22c55e,#15803d);
+    border:4px solid white;
 
+    background:#22c55e;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-
-    font-size:40px;
-
-    font-weight:bold;
-
-
-    border:5px solid rgba(255,255,255,.8);
-
-
-    box-shadow:
-
-    0 10px 25px rgba(0,0,0,.35);
-
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
 
     transition:.3s;
 
-
 }
-
-
 
 .balao:hover{
 
-    transform:scale(1.08);
+    transform:scale(1.06);
 
 }
 
+.balao img{
 
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+
+}
+
+.administrador{
+
+    border-color:#ffd700;
+
+}
 
 .baloes span{
 
-    display:block;
-
-    margin-top:12px;
-
-    font-size:18px;
-
+    margin-top:10px;
     font-weight:bold;
+    text-decoration:none;
 
 }
 
+@media(max-width:700px){
 
+    .baloes{
 
-.baloes a:last-child{
-
-    grid-column:1 / 3;
-
-}
-
-
-
-.baloes a:last-child .balao{
-
-    background:
-
-    linear-gradient(145deg,#38bdf8,#0284c7);
-
-}
-
-
-
-@media(max-width:450px){
-
-    .balao{
-
-        width:110px;
-
-        height:110px;
-
-        font-size:34px;
+        gap:20px;
 
     }
 
+    .balao{
 
-    header h1{
-
-        font-size:30px;
+        width:95px;
+        height:95px;
 
     }
 
