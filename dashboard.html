@@ -23,7 +23,7 @@
 
 <h1>Família Moreira ❤️</h1>
 
-<p>Bem-vindo, Laércio 👑</p>
+<p id="boasVindas">Bem-vindo</p>
 
 </header>
 
@@ -96,6 +96,26 @@
 
 </div>
 
+
+<script>
+
+const nome = localStorage.getItem("nome");
+const perfil = localStorage.getItem("perfil");
+
+if(nome){
+
+    let icone = "";
+
+    if(perfil === "Administrador"){
+        icone = " 👑";
+    }
+
+    document.getElementById("boasVindas").innerHTML =
+    "Bem-vindo, " + nome + icone;
+
+}
+
+</script>
 
 
 </body>
