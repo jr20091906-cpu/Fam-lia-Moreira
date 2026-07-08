@@ -47,6 +47,7 @@ header h1{
 }
 
 
+
 header p{
 
     color:#d1fae5;
@@ -89,11 +90,15 @@ header p{
 
 .foto{
 
-    width:90px;
+    width:100px;
 
-    height:90px;
+    height:100px;
 
     border-radius:50%;
+
+    overflow:hidden;
+
+    margin:0 auto 15px;
 
     background:#22c55e;
 
@@ -103,11 +108,17 @@ header p{
 
     justify-content:center;
 
-    margin:0 auto 15px;
+}
 
-    font-size:30px;
 
-    font-weight:bold;
+
+.foto img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
 
 }
 
@@ -150,6 +161,7 @@ header p{
     .membros{
 
         grid-template-columns:1fr;
+
     }
 
 }
