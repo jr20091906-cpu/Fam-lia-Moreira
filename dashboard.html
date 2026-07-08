@@ -12,12 +12,9 @@
 
 </head>
 
-
 <body>
 
-
 <div class="dashboard">
-
 
 <header class="dashboard-topo">
 
@@ -26,7 +23,6 @@
 <p id="boasVindas">Bem-vindo</p>
 
 </header>
-
 
 
 <section class="menu">
@@ -41,7 +37,6 @@
 </a>
 
 
-
 <a href="#">
 <div class="card">
 <h2>✅</h2>
@@ -49,7 +44,6 @@
 <p>Rotina e responsabilidades</p>
 </div>
 </a>
-
 
 
 <a href="#">
@@ -61,7 +55,6 @@
 </a>
 
 
-
 <a href="#">
 <div class="card">
 <h2>🏠</h2>
@@ -69,7 +62,6 @@
 <p>Organização familiar</p>
 </div>
 </a>
-
 
 
 <a href="#">
@@ -81,7 +73,6 @@
 </a>
 
 
-
 <a href="#">
 <div class="card">
 <h2>👨‍👩‍👧‍👦</h2>
@@ -89,6 +80,9 @@
 <p>Membros e permissões</p>
 </div>
 </a>
+
+
+<div id="adminArea"></div>
 
 
 </section>
@@ -102,6 +96,7 @@
 const nome = localStorage.getItem("nome");
 const perfil = localStorage.getItem("perfil");
 
+
 if(nome){
 
     let icone = "";
@@ -110,10 +105,31 @@ if(nome){
         icone = " 👑";
     }
 
+
     document.getElementById("boasVindas").innerHTML =
     "Bem-vindo, " + nome + icone;
 
 }
+
+
+
+if(perfil === "Administrador"){
+
+
+document.getElementById("adminArea").innerHTML = `
+
+<a href="#">
+<div class="card">
+<h2>⚙️</h2>
+<h3>Administração</h3>
+<p>Configurações da família</p>
+</div>
+</a>
+
+`;
+
+}
+
 
 </script>
 
