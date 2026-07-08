@@ -1,0 +1,155 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(180deg,#0b3d2e,#14532d);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+
+
+.familia{
+
+    width:100%;
+
+    max-width:900px;
+
+    text-align:center;
+
+    color:white;
+
+}
+
+
+
+header h1{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+
+header p{
+
+    color:#d1fae5;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.membros{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+}
+
+
+
+.perfil{
+
+    background:rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.20);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.30);
+
+}
+
+
+
+.foto{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:0 auto 15px;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+}
+
+
+
+.perfil h2{
+
+    margin-bottom:8px;
+
+}
+
+
+
+.perfil p{
+
+    color:#d1fae5;
+
+}
+
+
+
+.voltar{
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+
+
+@media(max-width:600px){
+
+    .membros{
+
+        grid-template-columns:1fr;
+    }
+
+}
