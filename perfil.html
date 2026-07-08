@@ -39,26 +39,20 @@
 </div>
 
 
-<h2 id="nomeMembro">
-Nome
-</h2>
+<h2 id="nomeMembro">Nome</h2>
 
 
-<p id="tipoMembro">
-Perfil
-</p>
+<p id="tipoMembro">Perfil</p>
 
 
 
 <div class="informacoes">
-
 
 <p>🎂 Data de nascimento</p>
 
 <p>📝 Informações pessoais</p>
 
 <p>🔐 Permissões</p>
-
 
 </div>
 
@@ -112,24 +106,19 @@ const membros = {
 
 
 
-const parametros = new URLSearchParams(window.location.search);
+const url = new URLSearchParams(window.location.search);
+
+const membroSelecionado = url.get("membro");
 
 
-const membro = parametros.get("membro");
+if(membroSelecionado && membros[membroSelecionado]){
+
+    document.getElementById("nomeMembro").innerHTML =
+    membros[membroSelecionado].nome;
 
 
-
-if(membro && membros[membro]){
-
-
-document.getElementById("nomeMembro").innerHTML =
-membros[membro].nome;
-
-
-
-document.getElementById("tipoMembro").innerHTML =
-membros[membro].perfil;
-
+    document.getElementById("tipoMembro").innerHTML =
+    membros[membroSelecionado].perfil;
 
 }
 
