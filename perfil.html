@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perfil - Família Moreira</title>
+
+<link rel="stylesheet" href="perfil.css">
+
+</head>
+
+
+<body>
+
+
+<div class="perfil-container">
+
+
+<header>
+
+<h1>❤️ Família Moreira</h1>
+
+<p>Perfil do membro</p>
+
+</header>
+
+
+
+<div class="perfil-card">
+
+
+<div class="foto-perfil">
+
+📷
+
+</div>
+
+
+<h2 id="nomeMembro">
+Nome
+</h2>
+
+
+<p id="tipoMembro">
+Perfil
+</p>
+
+
+
+<div class="informacoes">
+
+
+<p>🎂 Data de nascimento</p>
+
+<p>📝 Informações pessoais</p>
+
+<p>🔐 Permissões</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<a href="familia.html" class="voltar">
+
+← Voltar
+
+</a>
+
+
+</div>
+
+
+
+<script>
+
+const nome = localStorage.getItem("nome");
+const perfil = localStorage.getItem("perfil");
+
+
+if(nome){
+
+document.getElementById("nomeMembro").innerHTML = nome;
+
+document.getElementById("tipoMembro").innerHTML = perfil;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
