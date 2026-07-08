@@ -94,6 +94,19 @@ header p{
 
 
 
+.perfil,
+.perfil:visited,
+.perfil:hover,
+.perfil:active{
+
+    text-decoration:none;
+
+    color:white;
+
+}
+
+
+
 .foto{
 
     width:100px;
@@ -122,21 +135,11 @@ header p{
 
 
 
-.foto img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-}
-
-
-
 .perfil h2{
 
     margin-bottom:8px;
+
+    text-decoration:none;
 
 }
 
@@ -145,6 +148,8 @@ header p{
 .perfil p{
 
     color:#d1fae5;
+
+    text-decoration:none;
 
 }
 
