@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Agenda - Família Moreira</title>
+
+<link rel="stylesheet" href="agenda.css">
+
+</head>
+
+<body>
+
+<div class="agenda">
+
+<header>
+
+<h1>📅 Agenda da Família</h1>
+
+<p>Organize os compromissos da família.</p>
+
+</header>
+
+
+<section class="acoes">
+
+<input
+type="text"
+placeholder="Pesquisar compromisso..."
+id="pesquisa">
+
+<select id="filtro">
+
+<option value="todos">Todos</option>
+<option value="laercio">Laércio</option>
+<option value="taina">Tainá</option>
+<option value="anaclara">Ana Clara</option>
+<option value="isadora">Isadora</option>
+<option value="isaac">Isaac</option>
+
+</select>
+
+<button id="novoCompromisso">
+
+➕ Novo compromisso
+
+</button>
+
+</section>
+
+
+<section id="listaCompromissos">
+
+<div class="card">
+
+<h2>Nenhum compromisso cadastrado</h2>
+
+<p>Os compromissos aparecerão aqui.</p>
+
+</div>
+
+</section>
+
+
+<a href="dashboard.html" class="voltar">
+
+← Voltar ao Dashboard
+
+</a>
+
+</div>
+
+<script src="agenda.js"></script>
+
+</body>
+
+</html>
