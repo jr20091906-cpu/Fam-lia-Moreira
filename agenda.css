@@ -1,0 +1,165 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:linear-gradient(180deg,#0b3d2e,#14532d);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+.agenda{
+
+    width:100%;
+
+    max-width:900px;
+
+    color:white;
+
+}
+
+header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+header h1{
+
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+header p{
+
+    color:#d1fae5;
+
+}
+
+.acoes{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+.acoes input,
+.acoes select{
+
+    flex:1;
+
+    min-width:220px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+}
+
+.acoes button{
+
+    padding:15px 25px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#22c55e;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.acoes button:hover{
+
+    transform:scale(1.03);
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.20);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 12px 25px rgba(0,0,0,.25);
+
+}
+
+.card h2{
+
+    margin-bottom:10px;
+
+}
+
+.card p{
+
+    color:#d1fae5;
+
+}
+
+.voltar{
+
+    display:inline-block;
+
+    margin-top:30px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+@media(max-width:700px){
+
+    .acoes{
+
+        flex-direction:column;
+
+    }
+
+}
