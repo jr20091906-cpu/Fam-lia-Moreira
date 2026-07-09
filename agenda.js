@@ -1,21 +1,46 @@
 // Família Moreira
-// Agenda v1.0
-
-let compromissos = [];
+// Agenda v2.0
 
 const lista = document.getElementById("listaCompromissos");
+const pesquisa = document.getElementById("pesquisa");
+const filtro = document.getElementById("filtro");
 const botao = document.getElementById("novoCompromisso");
 
-function atualizarLista(){
+botao.addEventListener("click", () => {
+
+    window.location.href = "novo-compromisso.html";
+
+});
+
+function carregarCompromissos() {
+
+    const compromissos =
+        JSON.parse(localStorage.getItem("compromissos")) || [];
 
     lista.innerHTML = "";
 
-    if(compromissos.length === 0){
+    let resultado = compromissos.filter(compromisso => {
+
+        const texto = pesquisa.value.toLowerCase();
+
+        const pesquisaOK =
+            compromisso.titulo.toLowerCase().includes(texto);
+
+        const filtroOK =
+            filtro.value === "todos" ||
+            compromisso.membro === filtro.value ||
+            compromisso.membro === "todos";
+
+        return pesquisaOK && filtroOK;
+
+    });
+
+    if (resultado.length === 0) {
 
         lista.innerHTML = `
         <div class="card">
-            <h2>Nenhum compromisso cadastrado</h2>
-            <p>Os compromissos aparecerão aqui.</p>
+            <h2>Nenhum compromisso encontrado</h2>
+            <p>Cadastre um novo compromisso.</p>
         </div>
         `;
 
@@ -23,9 +48,19 @@ function atualizarLista(){
 
     }
 
-    compromissos.forEach(compromisso=>{
+    resultado.sort((a, b) => {
+
+        const dataA = new Date(a.data + "T" + a.hora);
+        const dataB = new Date(b.data + "T" + b.hora);
+
+        return dataA - dataB;
+
+    });
+
+    resultado.forEach(compromisso => {
 
         lista.innerHTML += `
+
         <div class="card">
 
             <h2>${compromisso.titulo}</h2>
@@ -36,42 +71,20 @@ function atualizarLista(){
 
             <p><strong>🕒 Horário:</strong> ${compromisso.hora}</p>
 
+            <p><strong>📍 Local:</strong> ${compromisso.local || "-"}</p>
+
+            <p><strong>📝 Observações:</strong> ${compromisso.observacoes || "-"}</p>
+
         </div>
+
         `;
 
     });
 
 }
 
-botao.addEventListener("click",()=>{
+pesquisa.addEventListener("input", carregarCompromissos);
 
-    const titulo = prompt("Compromisso:");
+filtro.addEventListener("change", carregarCompromissos);
 
-    if(!titulo) return;
-
-    const membro = prompt("Para quem é o compromisso?");
-
-    if(!membro) return;
-
-    const data = prompt("Data (dd/mm/aaaa):");
-
-    if(!data) return;
-
-    const hora = prompt("Horário:");
-
-    if(!hora) return;
-
-    compromissos.push({
-
-        titulo,
-        membro,
-        data,
-        hora
-
-    });
-
-    atualizarLista();
-
-});
-
-atualizarLista();
+carregarCompromissos();
