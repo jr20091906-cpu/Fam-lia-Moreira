@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Novo Compromisso</title>
+
+<link rel="stylesheet" href="novo-compromisso.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📅 Novo Compromisso</h1>
+
+<form id="formCompromisso">
+
+<label>Título</label>
+<input
+type="text"
+id="titulo"
+placeholder="Ex.: Consulta médica"
+required>
+
+<label>Membro da família</label>
+
+<select id="membro">
+
+<option value="laercio">Laércio</option>
+<option value="taina">Tainá</option>
+<option value="anaclara">Ana Clara</option>
+<option value="isadora">Isadora</option>
+<option value="isaac">Isaac</option>
+<option value="todos">Toda a família</option>
+
+</select>
+
+<label>Data</label>
+
+<input
+type="date"
+id="data"
+required>
+
+<label>Horário</label>
+
+<input
+type="time"
+id="hora"
+required>
+
+<label>Local</label>
+
+<input
+type="text"
+id="local"
+placeholder="Onde será o compromisso">
+
+<label>Observações</label>
+
+<textarea
+id="observacoes"
+rows="5"
+placeholder="Informações adicionais..."></textarea>
+
+<div class="botoes">
+
+<button type="submit">
+
+💾 Salvar
+
+</button>
+
+<a href="agenda.html">
+
+Cancelar
+
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+<script src="novo-compromisso.js"></script>
+
+</body>
+
+</html>
