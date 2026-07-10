@@ -1,5 +1,5 @@
 // Família Moreira
-// Novo Compromisso v2.0
+// Novo Compromisso v4.0
 
 const formulario = document.getElementById("formCompromisso");
 
@@ -11,83 +11,103 @@ JSON.parse(localStorage.getItem("editarCompromisso"));
 
 // Carregar dados quando for edição
 
-if(indiceEdicao !== null && compromissoEdicao){
+if (indiceEdicao !== null && compromissoEdicao) {
 
     document.getElementById("titulo").value =
-    compromissoEdicao.titulo;
+        compromissoEdicao.titulo || "";
 
     document.getElementById("membro").value =
-    compromissoEdicao.membro;
+        compromissoEdicao.membro || "todos";
 
     document.getElementById("data").value =
-    compromissoEdicao.data;
+        compromissoEdicao.data || "";
 
     document.getElementById("hora").value =
-    compromissoEdicao.hora;
+        compromissoEdicao.hora || "";
 
     document.getElementById("local").value =
-    compromissoEdicao.local;
+        compromissoEdicao.local || "";
 
     document.getElementById("observacoes").value =
-    compromissoEdicao.observacoes;
+        compromissoEdicao.observacoes || "";
 
 }
 
 
 
-formulario.addEventListener("submit", function(e){
+formulario.addEventListener("submit", function (e) {
 
     e.preventDefault();
+
+    let lista =
+        JSON.parse(localStorage.getItem("compromissos")) || [];
+
+
+    const agora = new Date().toISOString();
 
 
     const compromisso = {
 
+        id:
+
+            compromissoEdicao?.id ||
+
+            "cmp_" + Date.now(),
+
         titulo:
-        document.getElementById("titulo").value,
+            document.getElementById("titulo").value.trim(),
 
         membro:
-        document.getElementById("membro").value,
+            document.getElementById("membro").value,
 
         data:
-        document.getElementById("data").value,
+            document.getElementById("data").value,
 
         hora:
-        document.getElementById("hora").value,
+            document.getElementById("hora").value,
 
         local:
-        document.getElementById("local").value,
+            document.getElementById("local").value.trim(),
 
         observacoes:
-        document.getElementById("observacoes").value
+            document.getElementById("observacoes").value.trim(),
+
+        status:
+
+            compromissoEdicao?.status ||
+
+            "ativo",
+
+        criadoEm:
+
+            compromissoEdicao?.criadoEm ||
+
+            agora,
+
+        atualizadoEm:
+
+            agora
 
     };
 
 
-
-    let lista =
-    JSON.parse(localStorage.getItem("compromissos")) || [];
-
-
-
-    if(indiceEdicao !== null){
-
+    if (indiceEdicao !== null) {
 
         lista[indiceEdicao] = compromisso;
 
-
-    }else{
-
+    } else {
 
         lista.push(compromisso);
-
 
     }
 
 
-
     localStorage.setItem(
-    "compromissos",
-    JSON.stringify(lista)
+
+        "compromissos",
+
+        JSON.stringify(lista)
+
     );
 
 
@@ -99,8 +119,6 @@ formulario.addEventListener("submit", function(e){
     alert("✅ Compromisso salvo com sucesso!");
 
 
-    window.location.href =
-    "agenda.html";
-
+    window.location.href = "agenda.html";
 
 });
