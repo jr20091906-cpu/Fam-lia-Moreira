@@ -31,51 +31,81 @@
 
 
 <a href="agenda.html">
+
 <div class="card">
+
 <h2>📅</h2>
+
 <h3>Agenda</h3>
+
 <p>Compromissos da família</p>
+
 </div>
+
 </a>
 
 
 
-<a href="#">
+<a href="tarefas.html">
+
 <div class="card">
+
 <h2>✅</h2>
+
 <h3>Tarefas</h3>
+
 <p>Rotina e responsabilidades</p>
+
 </div>
+
 </a>
 
 
 
 <a href="#">
+
 <div class="card">
+
 <h2>📚</h2>
+
 <h3>Escola e Cursos</h3>
+
 <p>Aulas, provas e atividades</p>
+
 </div>
+
 </a>
 
 
 
 <a href="#">
+
 <div class="card">
+
 <h2>🏠</h2>
+
 <h3>Rotina da Casa</h3>
+
 <p>Organização familiar</p>
+
 </div>
+
 </a>
 
 
 
 <a href="#">
+
 <div class="card">
+
 <h2>🔔</h2>
+
 <h3>Lembretes</h3>
+
 <p>Avisos importantes</p>
+
 </div>
+
 </a>
 
 
@@ -117,8 +147,11 @@ if(nome){
     let icone = "";
 
     if(perfil === "Administrador"){
+
         icone = " 👑";
+
     }
+
 
     document.getElementById("boasVindas").innerHTML =
     "Bem-vindo, " + nome + icone;
@@ -126,11 +159,14 @@ if(nome){
 }
 
 
+
 if(perfil === "Administrador"){
+
 
 document.getElementById("adminArea").innerHTML = `
 
 <a href="#">
+
 <div class="card">
 
 <h2>⚙️</h2>
@@ -140,11 +176,13 @@ document.getElementById("adminArea").innerHTML = `
 <p>Configurações da família</p>
 
 </div>
+
 </a>
 
 `;
 
 }
+
 
 </script>
 
