@@ -1,0 +1,106 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.tarefas{
+    width:95%;
+    max-width:900px;
+    margin:30px auto;
+}
+
+header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+header h1{
+    color:#1f3c88;
+    margin-bottom:8px;
+}
+
+header p{
+    color:#666;
+}
+
+.acoes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.acoes input,
+.acoes select{
+    flex:1;
+    min-width:180px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+.acoes button{
+    padding:12px 20px;
+    background:#1f3c88;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    transition:.2s;
+}
+
+.acoes button:hover{
+    background:#16306d;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:#1f3c88;
+    margin-bottom:10px;
+}
+
+.card p{
+    margin:6px 0;
+    color:#555;
+}
+
+.voltar{
+    display:inline-block;
+    margin-top:20px;
+    text-decoration:none;
+    color:#1f3c88;
+    font-weight:bold;
+}
+
+.voltar:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:600px){
+
+    .acoes{
+        flex-direction:column;
+    }
+
+    .acoes input,
+    .acoes select,
+    .acoes button{
+        width:100%;
+    }
+
+}
