@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Novo Registro - Família Moreira</title>
+
+<link rel="stylesheet" href="novo-registro.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>📚 Novo Registro</h1>
+
+<p>Cadastre uma prova, atividade ou curso.</p>
+
+</header>
+
+<form id="formRegistro">
+
+<label>Título</label>
+<input
+type="text"
+id="titulo"
+required>
+
+<label>Responsável</label>
+
+<select id="responsavel" required>
+
+<option value="Laércio">👑 Laércio</option>
+<option value="Tainá">🌸 Tainá</option>
+<option value="Ana Clara">💜 Ana Clara</option>
+<option value="Isadora">💚 Isadora</option>
+<option value="Isaac">🧸 Isaac</option>
+
+</select>
+
+<label>Disciplina / Curso</label>
+
+<input
+type="text"
+id="disciplina"
+required>
+
+<label>Data</label>
+
+<input
+type="date"
+id="data"
+required>
+
+<label>Status</label>
+
+<select id="status">
+
+<option value="Pendente">Pendente</option>
+<option value="Em andamento">Em andamento</option>
+<option value="Concluído">Concluído</option>
+
+</select>
+
+<label>Observações</label>
+
+<textarea
+id="observacoes"
+rows="4"
+placeholder="Opcional"></textarea>
+
+<button type="submit">
+
+💾 Salvar Registro
+
+</button>
+
+</form>
+
+<a href="escola.html">
+
+← Voltar
+
+</a>
+
+</div>
+
+<script src="novo-registro.js"></script>
+
+</body>
+
+</html>
