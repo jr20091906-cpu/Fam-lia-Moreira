@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Novo Lembrete - Família Moreira</title>
+
+<link rel="stylesheet" href="novo-lembrete.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>🔔 Novo Lembrete</h1>
+
+<p>Cadastre um aviso importante.</p>
+
+</header>
+
+
+<form id="formLembrete">
+
+
+<label>Título</label>
+
+<input 
+type="text"
+id="titulo"
+required>
+
+
+<label>Responsável</label>
+
+<select id="responsavel">
+
+<option value="Todos">👨‍👩‍👧‍👦 Toda a família</option>
+<option value="Laércio">👑 Laércio</option>
+<option value="Tainá">🌸 Tainá</option>
+<option value="Ana Clara">💜 Ana Clara</option>
+<option value="Isadora">💚 Isadora</option>
+<option value="Isaac">🧸 Isaac</option>
+
+</select>
+
+
+<label>Data</label>
+
+<input
+type="date"
+id="data">
+
+
+<label>Prioridade</label>
+
+<select id="prioridade">
+
+<option value="Baixa">Baixa</option>
+<option value="Média">Média</option>
+<option value="Alta">Alta</option>
+
+</select>
+
+
+<label>Observações</label>
+
+<textarea
+id="observacoes"
+rows="4"
+placeholder="Opcional"></textarea>
+
+
+<button type="submit">
+
+💾 Salvar Lembrete
+
+</button>
+
+
+</form>
+
+
+<a href="lembretes.html">
+
+← Voltar
+
+</a>
+
+
+</div>
+
+
+<script src="novo-lembrete.js"></script>
+
+</body>
+
+</html>
