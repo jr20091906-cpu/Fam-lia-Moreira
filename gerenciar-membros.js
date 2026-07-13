@@ -1,11 +1,10 @@
 // Família Moreira
-// Gerenciar Membros v1.2
+// Gerenciar Membros v2.0
 
 const lista = document.getElementById("listaMembros");
-const botao = document.getElementById("novoMembro");
+const botaoNovo = document.getElementById("novoMembro");
 
-
-botao.addEventListener("click", () => {
+botaoNovo.addEventListener("click", () => {
 
     localStorage.removeItem("editarMembro");
     localStorage.removeItem("indiceMembro");
@@ -14,179 +13,127 @@ botao.addEventListener("click", () => {
 
 });
 
+function carregarMembros() {
 
+    let membros =
+        JSON.parse(localStorage.getItem("membros")) || [];
 
-function carregarMembros(){
-
-    const membros =
-    JSON.parse(localStorage.getItem("membros")) || [];
-
+    membros.sort((a, b) =>
+        (a.nome || "").localeCompare(b.nome || "", "pt-BR")
+    );
 
     lista.innerHTML = "";
 
-
-    if(membros.length === 0){
+    if (membros.length === 0) {
 
         lista.innerHTML = `
-
-        <div class="card">
-
-            <h2>Nenhum membro cadastrado</h2>
-
-            <p>Cadastre o primeiro membro da família.</p>
-
-        </div>
-
+            <div class="card">
+                <h2>Nenhum membro cadastrado</h2>
+                <p>Cadastre o primeiro membro da família.</p>
+            </div>
         `;
 
         return;
-
     }
 
-
-
-    membros.forEach((membro,index)=>{
-
+    membros.forEach((membro) => {
 
         lista.innerHTML += `
 
         <div class="card">
 
-
             <div class="membro">
-
 
                 <div class="foto">
 
                     ${
-                    membro.foto
-                    ?
-                    `<img src="${membro.foto}">`
-                    :
-                    "👤"
+                        membro.foto
+                        ? `<img src="${membro.foto}">`
+                        : "👤"
                     }
 
                 </div>
-
-
 
                 <div class="info">
 
                     <h2>${membro.nome}</h2>
 
-                    <p>🔑 Usuário: ${membro.usuario || "-"}</p>
+                    <p>👤 ${membro.usuario}</p>
 
-                    <p>👑 Perfil: ${membro.perfil || "-"}</p>
+                    <p>👑 ${membro.perfil}</p>
 
                     <p>📞 ${membro.telefone || "-"}</p>
 
-                    <p>🎂 ${membro.nascimento || "-"}</p>
-
                 </div>
 
-
             </div>
 
+            <div class="acoes">
 
+                <button onclick="editar('${membro.id}')">
 
-            <div class="acoes-membro">
-
-
-                <button 
-                class="editar"
-                onclick="editarMembro(${index})">
-
-                ✏️ Editar
+                    ✏️ Editar
 
                 </button>
 
+                <button onclick="excluir('${membro.id}')">
 
-
-                <button 
-                class="excluir"
-                onclick="excluirMembro(${index})">
-
-                🗑️ Excluir
+                    🗑️ Excluir
 
                 </button>
 
-
             </div>
-
 
         </div>
 
         `;
 
-
     });
 
-
 }
 
-
-
-
-function excluirMembro(index){
-
+function editar(id) {
 
     let membros =
-    JSON.parse(localStorage.getItem("membros")) || [];
+        JSON.parse(localStorage.getItem("membros")) || [];
 
+    const indice =
+        membros.findIndex(m => m.id == id);
 
-    if(confirm("Deseja excluir este membro?")){
-
-
-        membros.splice(index,1);
-
-
-
-        localStorage.setItem(
-            "membros",
-            JSON.stringify(membros)
-        );
-
-
-        carregarMembros();
-
-    }
-
-
-}
-
-
-
-
-
-function editarMembro(index){
-
-
-    let membros =
-    JSON.parse(localStorage.getItem("membros")) || [];
-
-
+    if (indice === -1) return;
 
     localStorage.setItem(
         "editarMembro",
-        JSON.stringify(membros[index])
+        JSON.stringify(membros[indice])
     );
-
-
 
     localStorage.setItem(
         "indiceMembro",
-        index
+        indice
     );
 
-
-
-    window.location.href =
-    "novo-membro.html";
-
+    window.location.href = "novo-membro.html";
 
 }
 
+function excluir(id) {
 
+    if (!confirm("Deseja excluir este membro?"))
+        return;
 
+    let membros =
+        JSON.parse(localStorage.getItem("membros")) || [];
+
+    membros =
+        membros.filter(m => m.id != id);
+
+    localStorage.setItem(
+        "membros",
+        JSON.stringify(membros)
+    );
+
+    carregarMembros();
+
+}
 
 carregarMembros();
