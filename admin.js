@@ -1,13 +1,13 @@
 // Família Moreira
-// Administração v1.1
+// Painel Administração v2.0
 
 const painel = document.getElementById("painelResumo");
 
 
-function contar(chave){
+function buscarQuantidade(nome){
 
     const dados =
-    JSON.parse(localStorage.getItem(chave)) || [];
+    JSON.parse(localStorage.getItem(nome)) || [];
 
     return dados.length;
 
@@ -15,100 +15,111 @@ function contar(chave){
 
 
 
-function carregarPainel(){
+function carregarResumo(){
 
 
-    const dados = {
+    if(!painel) return;
 
-        membros: contar("membros"),
 
-        compromissos: contar("compromissos"),
 
-        tarefas: contar("tarefas"),
+    const resumo = {
 
-        rotinas: contar("rotinas"),
 
-        escola: contar("registrosEscola"),
+        membros:
+        buscarQuantidade("membros"),
 
-        lembretes: contar("lembretes")
+
+        compromissos:
+        buscarQuantidade("compromissos"),
+
+
+        tarefas:
+        buscarQuantidade("tarefas"),
+
+
+        rotinas:
+        buscarQuantidade("rotinas"),
+
+
+        escola:
+        buscarQuantidade("registrosEscola"),
+
+
+        lembretes:
+        buscarQuantidade("lembretes")
+
 
     };
 
 
 
-    if(painel){
+    painel.innerHTML = `
 
 
-        painel.innerHTML = `
+    <div class="card">
 
+        <h2>👨‍👩‍👧‍👦 ${resumo.membros}</h2>
 
-        <div class="card">
+        <p>Membros cadastrados</p>
 
-        <h2>👨‍👩‍👧‍👦 ${dados.membros}</h2>
-
-        <p>Membros</p>
-
-        </div>
+    </div>
 
 
 
-        <div class="card">
+    <div class="card">
 
-        <h2>📅 ${dados.compromissos}</h2>
+        <h2>📅 ${resumo.compromissos}</h2>
 
         <p>Compromissos</p>
 
-        </div>
+    </div>
 
 
 
-        <div class="card">
+    <div class="card">
 
-        <h2>✅ ${dados.tarefas}</h2>
+        <h2>✅ ${resumo.tarefas}</h2>
 
         <p>Tarefas</p>
 
-        </div>
+    </div>
 
 
 
-        <div class="card">
+    <div class="card">
 
-        <h2>🏠 ${dados.rotinas}</h2>
+        <h2>🏠 ${resumo.rotinas}</h2>
 
         <p>Rotinas</p>
 
-        </div>
+    </div>
 
 
 
-        <div class="card">
+    <div class="card">
 
-        <h2>📚 ${dados.escola}</h2>
+        <h2>📚 ${resumo.escola}</h2>
 
-        <p>Escola/Cursos</p>
+        <p>Escola e Cursos</p>
 
-        </div>
+    </div>
 
 
 
-        <div class="card">
+    <div class="card">
 
-        <h2>🔔 ${dados.lembretes}</h2>
+        <h2>🔔 ${resumo.lembretes}</h2>
 
         <p>Lembretes</p>
 
-        </div>
+    </div>
 
 
-        `;
-
-
-    }
+    `;
 
 
 }
 
 
 
-carregarPainel();
+carregarResumo();
