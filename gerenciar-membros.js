@@ -1,5 +1,5 @@
 // Família Moreira
-// Gerenciar Membros v1.1
+// Gerenciar Membros v1.2
 
 const lista = document.getElementById("listaMembros");
 const botao = document.getElementById("novoMembro");
@@ -52,18 +52,19 @@ function carregarMembros(){
 
         <div class="card">
 
+
             <div class="membro">
 
 
                 <div class="foto">
 
-                ${
+                    ${
                     membro.foto
                     ?
                     `<img src="${membro.foto}">`
                     :
                     "👤"
-                }
+                    }
 
                 </div>
 
@@ -73,12 +74,13 @@ function carregarMembros(){
 
                     <h2>${membro.nome}</h2>
 
-                    <p>👑 Perfil: ${membro.perfil}</p>
+                    <p>🔑 Usuário: ${membro.usuario || "-"}</p>
+
+                    <p>👑 Perfil: ${membro.perfil || "-"}</p>
 
                     <p>📞 ${membro.telefone || "-"}</p>
 
                     <p>🎂 ${membro.nascimento || "-"}</p>
-
 
                 </div>
 
@@ -124,6 +126,7 @@ function carregarMembros(){
 
 
 
+
 function excluirMembro(index){
 
 
@@ -146,11 +149,12 @@ function excluirMembro(index){
 
         carregarMembros();
 
-
     }
 
 
 }
+
+
 
 
 
@@ -181,6 +185,7 @@ function editarMembro(index){
 
 
 }
+
 
 
 
