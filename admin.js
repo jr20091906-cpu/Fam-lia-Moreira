@@ -1,59 +1,114 @@
 // Família Moreira
-// Administração v1.0
+// Administração v1.1
 
 const painel = document.getElementById("painelResumo");
 
-function total(chave){
 
-    return JSON.parse(localStorage.getItem(chave))?.length || 0;
+function contar(chave){
+
+    const dados =
+    JSON.parse(localStorage.getItem(chave)) || [];
+
+    return dados.length;
 
 }
 
-const dados = {
 
-    compromissos: total("compromissos"),
-    tarefas: total("tarefas"),
-    rotinas: total("rotinas"),
-    escola: total("registrosEscola"),
-    lembretes: total("lembretes"),
-    membros: total("membros")
 
-};
+function carregarPainel(){
 
-if(painel){
 
-    painel.innerHTML = `
+    const dados = {
 
-    <div class="card">
-        <h2>📅 ${dados.compromissos}</h2>
-        <p>Compromissos</p>
-    </div>
+        membros: contar("membros"),
 
-    <div class="card">
-        <h2>✅ ${dados.tarefas}</h2>
-        <p>Tarefas</p>
-    </div>
+        compromissos: contar("compromissos"),
 
-    <div class="card">
-        <h2>🏠 ${dados.rotinas}</h2>
-        <p>Rotinas</p>
-    </div>
+        tarefas: contar("tarefas"),
 
-    <div class="card">
-        <h2>📚 ${dados.escola}</h2>
-        <p>Escola/Cursos</p>
-    </div>
+        rotinas: contar("rotinas"),
 
-    <div class="card">
-        <h2>🔔 ${dados.lembretes}</h2>
-        <p>Lembretes</p>
-    </div>
+        escola: contar("registrosEscola"),
 
-    <div class="card">
+        lembretes: contar("lembretes")
+
+    };
+
+
+
+    if(painel){
+
+
+        painel.innerHTML = `
+
+
+        <div class="card">
+
         <h2>👨‍👩‍👧‍👦 ${dados.membros}</h2>
-        <p>Membros</p>
-    </div>
 
-    `;
+        <p>Membros</p>
+
+        </div>
+
+
+
+        <div class="card">
+
+        <h2>📅 ${dados.compromissos}</h2>
+
+        <p>Compromissos</p>
+
+        </div>
+
+
+
+        <div class="card">
+
+        <h2>✅ ${dados.tarefas}</h2>
+
+        <p>Tarefas</p>
+
+        </div>
+
+
+
+        <div class="card">
+
+        <h2>🏠 ${dados.rotinas}</h2>
+
+        <p>Rotinas</p>
+
+        </div>
+
+
+
+        <div class="card">
+
+        <h2>📚 ${dados.escola}</h2>
+
+        <p>Escola/Cursos</p>
+
+        </div>
+
+
+
+        <div class="card">
+
+        <h2>🔔 ${dados.lembretes}</h2>
+
+        <p>Lembretes</p>
+
+        </div>
+
+
+        `;
+
+
+    }
+
 
 }
+
+
+
+carregarPainel();
