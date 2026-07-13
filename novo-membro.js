@@ -1,28 +1,31 @@
 // Família Moreira
-// Novo Membro v1.0
+// Novo Membro v1.1
 
 const formulario = document.getElementById("formMembro");
 const campoFoto = document.getElementById("foto");
+const preview = document.getElementById("previewFoto");
 
 let fotoBase64 = "";
 
+
+// Pré-visualização da foto
 
 campoFoto.addEventListener("change", function(){
 
     const arquivo = this.files[0];
 
-
     if(arquivo){
 
         const leitor = new FileReader();
-
 
         leitor.onload = function(e){
 
             fotoBase64 = e.target.result;
 
-        };
+            preview.innerHTML =
+            `<img src="${fotoBase64}">`;
 
+        };
 
         leitor.readAsDataURL(arquivo);
 
@@ -31,6 +34,7 @@ campoFoto.addEventListener("change", function(){
 });
 
 
+// Verifica edição
 
 const editar =
 localStorage.getItem("editarMembro");
@@ -48,33 +52,46 @@ if(editar){
 
 
     document.getElementById("nome").value =
-    membro.nome;
+    membro.nome || "";
+
+
+    document.getElementById("usuario").value =
+    membro.usuario || "";
+
+
+    document.getElementById("senha").value =
+    membro.senha || "";
 
 
     document.getElementById("perfil").value =
-    membro.perfil;
-
-
-    document.getElementById("telefone").value =
-    membro.telefone || "";
+    membro.perfil || "Usuário";
 
 
     document.getElementById("nascimento").value =
     membro.nascimento || "";
 
 
+    document.getElementById("telefone").value =
+    membro.telefone || "";
+
+
     document.getElementById("observacoes").value =
     membro.observacoes || "";
-
-
-    document.getElementById("senha").value =
-    membro.senha;
 
 
     fotoBase64 =
     membro.foto || "";
 
+
+    if(fotoBase64){
+
+        preview.innerHTML =
+        `<img src="${fotoBase64}">`;
+
+    }
+
 }
+
 
 
 
@@ -95,29 +112,32 @@ formulario.addEventListener("submit", function(e){
         document.getElementById("nome").value,
 
 
-        foto:
-        fotoBase64,
-
-
-        perfil:
-        document.getElementById("perfil").value,
+        usuario:
+        document.getElementById("usuario").value,
 
 
         senha:
         document.getElementById("senha").value,
 
 
-        telefone:
-        document.getElementById("telefone").value,
+        perfil:
+        document.getElementById("perfil").value,
 
 
         nascimento:
         document.getElementById("nascimento").value,
 
 
-        observacoes:
-        document.getElementById("observacoes").value
+        telefone:
+        document.getElementById("telefone").value,
 
+
+        observacoes:
+        document.getElementById("observacoes").value,
+
+
+        foto:
+        fotoBase64
 
     };
 
@@ -125,15 +145,11 @@ formulario.addEventListener("submit", function(e){
 
     if(indice !== null){
 
-
         membros[indice] = membro;
-
 
     }else{
 
-
         membros.push(membro);
-
 
     }
 
