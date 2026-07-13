@@ -1,5 +1,5 @@
 // Família Moreira
-// Gerenciar Membros v1.0
+// Gerenciar Membros v1.1
 
 const lista = document.getElementById("listaMembros");
 const botao = document.getElementById("novoMembro");
@@ -7,9 +7,13 @@ const botao = document.getElementById("novoMembro");
 
 botao.addEventListener("click", () => {
 
+    localStorage.removeItem("editarMembro");
+    localStorage.removeItem("indiceMembro");
+
     window.location.href = "novo-membro.html";
 
 });
+
 
 
 function carregarMembros(){
@@ -40,6 +44,7 @@ function carregarMembros(){
     }
 
 
+
     membros.forEach((membro,index)=>{
 
 
@@ -49,17 +54,19 @@ function carregarMembros(){
 
             <div class="membro">
 
+
                 <div class="foto">
 
-                    ${
+                ${
                     membro.foto
                     ?
                     `<img src="${membro.foto}">`
                     :
                     "👤"
-                    }
+                }
 
                 </div>
+
 
 
                 <div class="info">
@@ -72,12 +79,16 @@ function carregarMembros(){
 
                     <p>🎂 ${membro.nascimento || "-"}</p>
 
+
                 </div>
+
 
             </div>
 
 
+
             <div class="acoes-membro">
+
 
                 <button 
                 class="editar"
@@ -88,6 +99,7 @@ function carregarMembros(){
                 </button>
 
 
+
                 <button 
                 class="excluir"
                 onclick="excluirMembro(${index})">
@@ -95,6 +107,7 @@ function carregarMembros(){
                 🗑️ Excluir
 
                 </button>
+
 
             </div>
 
@@ -124,6 +137,7 @@ function excluirMembro(index){
         membros.splice(index,1);
 
 
+
         localStorage.setItem(
             "membros",
             JSON.stringify(membros)
@@ -131,6 +145,7 @@ function excluirMembro(index){
 
 
         carregarMembros();
+
 
     }
 
@@ -141,8 +156,10 @@ function excluirMembro(index){
 
 function editarMembro(index){
 
+
     let membros =
     JSON.parse(localStorage.getItem("membros")) || [];
+
 
 
     localStorage.setItem(
@@ -151,14 +168,17 @@ function editarMembro(index){
     );
 
 
+
     localStorage.setItem(
         "indiceMembro",
         index
     );
 
 
+
     window.location.href =
     "novo-membro.html";
+
 
 }
 
