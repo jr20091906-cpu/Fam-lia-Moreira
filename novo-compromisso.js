@@ -1,5 +1,5 @@
 // Família Moreira
-// Novo Compromisso v4.0
+// Novo Compromisso v4.1
 
 const formulario = document.getElementById("formCompromisso");
 
@@ -8,8 +8,49 @@ const indiceEdicao = localStorage.getItem("indiceEdicao");
 const compromissoEdicao =
 JSON.parse(localStorage.getItem("editarCompromisso"));
 
+const selectMembro =
+document.getElementById("membro");
 
-// Carregar dados quando for edição
+
+// ===============================
+// Carregar membros cadastrados
+// ===============================
+
+function carregarMembros() {
+
+    if (!selectMembro) return;
+
+    const membros =
+        JSON.parse(localStorage.getItem("membros")) || [];
+
+    selectMembro.innerHTML = "";
+
+    selectMembro.innerHTML += `
+        <option value="todos">
+            👨‍👩‍👧‍👦 Todos
+        </option>
+    `;
+
+    membros
+        .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
+        .forEach((membro) => {
+
+            selectMembro.innerHTML += `
+                <option value="${membro.nome}">
+                    ${membro.nome}
+                </option>
+            `;
+
+        });
+
+}
+
+carregarMembros();
+
+
+// ===============================
+// Carregar dados da edição
+// ===============================
 
 if (indiceEdicao !== null && compromissoEdicao) {
 
@@ -34,6 +75,9 @@ if (indiceEdicao !== null && compromissoEdicao) {
 }
 
 
+// ===============================
+// Salvar
+// ===============================
 
 formulario.addEventListener("submit", function (e) {
 
@@ -42,16 +86,12 @@ formulario.addEventListener("submit", function (e) {
     let lista =
         JSON.parse(localStorage.getItem("compromissos")) || [];
 
-
     const agora = new Date().toISOString();
-
 
     const compromisso = {
 
         id:
-
             compromissoEdicao?.id ||
-
             "cmp_" + Date.now(),
 
         titulo:
@@ -73,23 +113,15 @@ formulario.addEventListener("submit", function (e) {
             document.getElementById("observacoes").value.trim(),
 
         status:
-
-            compromissoEdicao?.status ||
-
-            "ativo",
+            compromissoEdicao?.status || "ativo",
 
         criadoEm:
-
-            compromissoEdicao?.criadoEm ||
-
-            agora,
+            compromissoEdicao?.criadoEm || agora,
 
         atualizadoEm:
-
             agora
 
     };
-
 
     if (indiceEdicao !== null) {
 
@@ -101,23 +133,15 @@ formulario.addEventListener("submit", function (e) {
 
     }
 
-
     localStorage.setItem(
-
         "compromissos",
-
         JSON.stringify(lista)
-
     );
 
-
     localStorage.removeItem("editarCompromisso");
-
     localStorage.removeItem("indiceEdicao");
 
-
     alert("✅ Compromisso salvo com sucesso!");
-
 
     window.location.href = "agenda.html";
 
