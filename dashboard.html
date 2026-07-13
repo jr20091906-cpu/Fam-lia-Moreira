@@ -14,9 +14,7 @@
 
 <body>
 
-
 <div class="dashboard">
-
 
 <header class="dashboard-topo">
 
@@ -29,10 +27,12 @@ Bem-vindo
 </header>
 
 
+<section id="painelResumo" class="menu">
+
+</section>
+
 
 <section class="menu">
-
-
 
 <a href="agenda.html">
 
@@ -47,7 +47,6 @@ Bem-vindo
 </div>
 
 </a>
-
 
 
 <a href="tarefas.html">
@@ -65,7 +64,6 @@ Bem-vindo
 </a>
 
 
-
 <a href="escola.html">
 
 <div class="card">
@@ -79,7 +77,6 @@ Bem-vindo
 </div>
 
 </a>
-
 
 
 <a href="rotina.html">
@@ -97,7 +94,6 @@ Bem-vindo
 </a>
 
 
-
 <a href="lembretes.html">
 
 <div class="card">
@@ -111,7 +107,6 @@ Bem-vindo
 </div>
 
 </a>
-
 
 
 <a href="familia.html">
@@ -129,9 +124,7 @@ Bem-vindo
 </a>
 
 
-
 <div id="adminArea"></div>
-
 
 
 <a href="logout.html">
@@ -148,86 +141,117 @@ Bem-vindo
 
 </a>
 
-
-
 </section>
 
-
 </div>
-
-
 
 <script>
 
-const nome =
-localStorage.getItem("nome");
-
-
-const perfil =
-localStorage.getItem("perfil");
-
-
+const nome = localStorage.getItem("nome");
+const perfil = localStorage.getItem("perfil");
 
 if(nome){
 
+    let icone="";
 
-let icone = "";
+    if(perfil==="Administrador"){
+        icone=" 👑";
+    }
 
+    document.getElementById("boasVindas").innerHTML =
+    "Bem-vindo, "+nome+icone;
 
-if(perfil === "Administrador"){
+}
 
-icone = " 👑";
+if(perfil==="Administrador"){
+
+    document.getElementById("adminArea").innerHTML=`
+
+    <a href="admin.html">
+
+        <div class="card">
+
+            <h2>⚙️</h2>
+
+            <h3>Administração</h3>
+
+            <p>Controle do aplicativo</p>
+
+        </div>
+
+    </a>
+
+    `;
 
 }
 
 
+// ======================
+// PAINEL RESUMO
+// ======================
 
-document.getElementById("boasVindas").innerHTML =
+function quantidade(chave){
 
-"Bem-vindo, " + nome + icone;
+    const dados =
+    JSON.parse(localStorage.getItem(chave)) || [];
 
+    return dados.length;
 
 }
 
-
-
-
-if(perfil === "Administrador"){
-
-
-document.getElementById("adminArea").innerHTML = `
-
-
-<a href="admin.html">
-
+document.getElementById("painelResumo").innerHTML = `
 
 <div class="card">
 
+<h2>👨‍👩‍👧‍👦 ${quantidade("membros")}</h2>
 
-<h2>⚙️</h2>
-
-
-<h3>Administração</h3>
-
-
-<p>Controle do aplicativo</p>
-
+<p>Membros</p>
 
 </div>
 
+<div class="card">
 
-</a>
+<h2>📅 ${quantidade("compromissos")}</h2>
 
+<p>Agenda</p>
+
+</div>
+
+<div class="card">
+
+<h2>✅ ${quantidade("tarefas")}</h2>
+
+<p>Tarefas</p>
+
+</div>
+
+<div class="card">
+
+<h2>🏠 ${quantidade("rotinas")}</h2>
+
+<p>Rotinas</p>
+
+</div>
+
+<div class="card">
+
+<h2>📚 ${quantidade("registrosEscola")}</h2>
+
+<p>Escola</p>
+
+</div>
+
+<div class="card">
+
+<h2>🔔 ${quantidade("lembretes")}</h2>
+
+<p>Lembretes</p>
+
+</div>
 
 `;
 
-
-}
-
-
 </script>
-
-
 
 </body>
 
