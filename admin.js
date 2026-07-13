@@ -1,60 +1,51 @@
 // Família Moreira
-// Painel Administração v2.0
+// Painel Administração v3.0
 
 const painel = document.getElementById("painelResumo");
 
-
-function buscarQuantidade(nome){
+function buscarQuantidade(chave){
 
     const dados =
-    JSON.parse(localStorage.getItem(nome)) || [];
+    JSON.parse(localStorage.getItem(chave)) || [];
 
-    return dados.length;
+    return Array.isArray(dados) ? dados.length : 0;
 
 }
 
-
-
 function carregarResumo(){
-
 
     if(!painel) return;
 
-
-
     const resumo = {
-
 
         membros:
         buscarQuantidade("membros"),
 
-
         compromissos:
         buscarQuantidade("compromissos"),
-
 
         tarefas:
         buscarQuantidade("tarefas"),
 
-
         rotinas:
         buscarQuantidade("rotinas"),
-
 
         escola:
         buscarQuantidade("registrosEscola"),
 
-
         lembretes:
         buscarQuantidade("lembretes")
 
-
     };
 
-
+    const totalRegistros =
+        resumo.compromissos +
+        resumo.tarefas +
+        resumo.rotinas +
+        resumo.escola +
+        resumo.lembretes;
 
     painel.innerHTML = `
-
 
     <div class="card">
 
@@ -64,8 +55,6 @@ function carregarResumo(){
 
     </div>
 
-
-
     <div class="card">
 
         <h2>📅 ${resumo.compromissos}</h2>
@@ -73,8 +62,6 @@ function carregarResumo(){
         <p>Compromissos</p>
 
     </div>
-
-
 
     <div class="card">
 
@@ -84,8 +71,6 @@ function carregarResumo(){
 
     </div>
 
-
-
     <div class="card">
 
         <h2>🏠 ${resumo.rotinas}</h2>
@@ -93,8 +78,6 @@ function carregarResumo(){
         <p>Rotinas</p>
 
     </div>
-
-
 
     <div class="card">
 
@@ -104,8 +87,6 @@ function carregarResumo(){
 
     </div>
 
-
-
     <div class="card">
 
         <h2>🔔 ${resumo.lembretes}</h2>
@@ -114,12 +95,18 @@ function carregarResumo(){
 
     </div>
 
+    <div class="card">
+
+        <h2>📊 ${totalRegistros}</h2>
+
+        <p>Total de registros</p>
+
+    </div>
 
     `;
 
-
 }
 
+window.addEventListener("load", carregarResumo);
 
-
-carregarResumo();
+window.addEventListener("storage", carregarResumo);
