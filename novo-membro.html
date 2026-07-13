@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Novo Membro - Família Moreira</title>
+
+<link rel="stylesheet" href="novo-membro.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<h1>👤 Novo Membro</h1>
+
+<p>Cadastro de membro da família.</p>
+
+</header>
+
+
+<form id="formMembro">
+
+
+<label>Nome completo</label>
+
+<input
+type="text"
+id="nome"
+required>
+
+
+<label>Foto (opcional)</label>
+
+<input
+type="file"
+id="foto"
+accept="image/*">
+
+
+<label>Perfil</label>
+
+<select id="perfil">
+
+<option value="Administrador">
+👑 Administrador
+</option>
+
+<option value="Usuário">
+👤 Usuário
+</option>
+
+</select>
+
+
+<label>Senha</label>
+
+<input
+type="password"
+id="senha"
+required>
+
+
+<label>Telefone</label>
+
+<input
+type="tel"
+id="telefone">
+
+
+<label>Data de nascimento</label>
+
+<input
+type="date"
+id="nascimento">
+
+
+<label>Observações</label>
+
+<textarea
+id="observacoes"
+rows="4"></textarea>
+
+
+<button type="submit">
+
+💾 Salvar Membro
+
+</button>
+
+
+</form>
+
+
+<a href="gerenciar-membros.html">
+
+← Voltar
+
+</a>
+
+
+</div>
+
+
+<script src="novo-membro.js"></script>
+
+</body>
+
+</html>
