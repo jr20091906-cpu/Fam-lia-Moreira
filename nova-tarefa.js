@@ -1,7 +1,57 @@
 // Família Moreira
-// Nova Tarefa v1.0
+// Nova Tarefa v2.0
 
 const formulario = document.getElementById("formTarefa");
+
+const selectResponsavel =
+document.getElementById("responsavel");
+
+
+// ===============================
+// Carregar membros
+// ===============================
+
+function carregarMembros(){
+
+    if(!selectResponsavel) return;
+
+    const membros =
+    JSON.parse(localStorage.getItem("membros")) || [];
+
+    selectResponsavel.innerHTML = "";
+
+    selectResponsavel.innerHTML += `
+        <option value="todos">
+            👨‍👩‍👧‍👦 Todos
+        </option>
+    `;
+
+    membros
+    .sort((a,b)=>
+        a.nome.localeCompare(b.nome,"pt-BR")
+    )
+    .forEach((membro)=>{
+
+        selectResponsavel.innerHTML += `
+
+            <option value="${membro.nome}">
+
+                ${membro.nome}
+
+            </option>
+
+        `;
+
+    });
+
+}
+
+carregarMembros();
+
+
+// ===============================
+// Salvar tarefa
+// ===============================
 
 formulario.addEventListener("submit", function (e) {
 
