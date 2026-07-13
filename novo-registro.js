@@ -1,7 +1,53 @@
 // Família Moreira
-// Novo Registro Escola v1.0
+// Novo Registro Escola v2.0
 
 const formulario = document.getElementById("formRegistro");
+
+const selectResponsavel =
+document.getElementById("responsavel");
+
+
+// ===============================
+// Carregar membros cadastrados
+// ===============================
+
+function carregarMembros(){
+
+    if(!selectResponsavel) return;
+
+    const membros =
+    JSON.parse(localStorage.getItem("membros")) || [];
+
+    selectResponsavel.innerHTML = "";
+
+    selectResponsavel.innerHTML += `
+        <option value="todos">
+            👨‍👩‍👧‍👦 Todos
+        </option>
+    `;
+
+    membros
+    .sort((a,b)=>
+        a.nome.localeCompare(b.nome,"pt-BR")
+    )
+    .forEach((membro)=>{
+
+        selectResponsavel.innerHTML += `
+            <option value="${membro.nome}">
+                ${membro.nome}
+            </option>
+        `;
+
+    });
+
+}
+
+carregarMembros();
+
+
+// ===============================
+// Salvar registro
+// ===============================
 
 formulario.addEventListener("submit", function(e){
 
@@ -10,6 +56,7 @@ formulario.addEventListener("submit", function(e){
     let registros =
     JSON.parse(localStorage.getItem("registrosEscola")) || [];
 
+    const agora = new Date().toISOString();
 
     const registro = {
 
@@ -34,25 +81,4 @@ formulario.addEventListener("submit", function(e){
         document.getElementById("observacoes").value.trim(),
 
         criadoEm:
-        new Date().toISOString()
-
-    };
-
-
-    registros.push(registro);
-
-
-    localStorage.setItem(
-        "registrosEscola",
-        JSON.stringify(registros)
-    );
-
-
-    alert("✅ Registro salvo com sucesso!");
-
-
-    window.location.href =
-    "escola.html";
-
-
-});
+        agora
