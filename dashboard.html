@@ -14,17 +14,25 @@
 
 <body>
 
+
 <div class="dashboard">
+
 
 <header class="dashboard-topo">
 
 <h1>Família Moreira ❤️</h1>
 
-<p id="boasVindas">Bem-vindo</p>
+<p id="boasVindas">
+Bem-vindo
+</p>
 
 </header>
 
+
+
 <section class="menu">
+
+
 
 <a href="agenda.html">
 
@@ -40,6 +48,8 @@
 
 </a>
 
+
+
 <a href="tarefas.html">
 
 <div class="card">
@@ -54,6 +64,8 @@
 
 </a>
 
+
+
 <a href="escola.html">
 
 <div class="card">
@@ -62,11 +74,13 @@
 
 <h3>Escola e Cursos</h3>
 
-<p>Aulas, provas e atividades</p>
+<p>Aulas e atividades</p>
 
 </div>
 
 </a>
+
+
 
 <a href="rotina.html">
 
@@ -82,6 +96,8 @@
 
 </a>
 
+
+
 <a href="lembretes.html">
 
 <div class="card">
@@ -96,6 +112,8 @@
 
 </a>
 
+
+
 <a href="familia.html">
 
 <div class="card">
@@ -104,61 +122,112 @@
 
 <h3>Família</h3>
 
-<p>Membros e permissões</p>
+<p>Membros e acessos</p>
 
 </div>
 
 </a>
+
+
 
 <div id="adminArea"></div>
 
-</section>
 
-</div>
 
-<script>
-
-const nome = localStorage.getItem("nome");
-const perfil = localStorage.getItem("perfil");
-
-if(nome){
-
-    let icone = "";
-
-    if(perfil === "Administrador"){
-
-        icone = " 👑";
-
-    }
-
-    document.getElementById("boasVindas").innerHTML =
-    "Bem-vindo, " + nome + icone;
-
-}
-
-if(perfil === "Administrador"){
-
-document.getElementById("adminArea").innerHTML = `
-
-<a href="admin.html">
+<a href="logout.html">
 
 <div class="card">
 
-<h2>⚙️</h2>
+<h2>🚪</h2>
 
-<h3>Administração</h3>
+<h3>Sair</h3>
 
-<p>Gerenciar usuários, permissões e configurações</p>
+<p>Encerrar sessão</p>
 
 </div>
 
 </a>
 
-`;
+
+
+</section>
+
+
+</div>
+
+
+
+<script>
+
+const nome =
+localStorage.getItem("nome");
+
+
+const perfil =
+localStorage.getItem("perfil");
+
+
+
+if(nome){
+
+
+let icone = "";
+
+
+if(perfil === "Administrador"){
+
+icone = " 👑";
 
 }
 
+
+
+document.getElementById("boasVindas").innerHTML =
+
+"Bem-vindo, " + nome + icone;
+
+
+}
+
+
+
+
+if(perfil === "Administrador"){
+
+
+document.getElementById("adminArea").innerHTML = `
+
+
+<a href="admin.html">
+
+
+<div class="card">
+
+
+<h2>⚙️</h2>
+
+
+<h3>Administração</h3>
+
+
+<p>Controle do aplicativo</p>
+
+
+</div>
+
+
+</a>
+
+
+`;
+
+
+}
+
+
 </script>
+
+
 
 </body>
 
