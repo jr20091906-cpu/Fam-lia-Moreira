@@ -1,5 +1,5 @@
 // Família Moreira
-// Novo Membro v1.1
+// Novo Membro v2.0
 
 const formulario = document.getElementById("formMembro");
 const campoFoto = document.getElementById("foto");
@@ -7,83 +7,62 @@ const preview = document.getElementById("previewFoto");
 
 let fotoBase64 = "";
 
-
-// Pré-visualização da foto
-
-campoFoto.addEventListener("change", function(){
+campoFoto.addEventListener("change", function () {
 
     const arquivo = this.files[0];
 
-    if(arquivo){
+    if (!arquivo) return;
 
-        const leitor = new FileReader();
+    const leitor = new FileReader();
 
-        leitor.onload = function(e){
+    leitor.onload = function (e) {
 
-            fotoBase64 = e.target.result;
+        fotoBase64 = e.target.result;
 
-            preview.innerHTML =
-            `<img src="${fotoBase64}">`;
+        if (preview) {
 
-        };
+            preview.innerHTML = `<img src="${fotoBase64}">`;
 
-        leitor.readAsDataURL(arquivo);
+        }
 
-    }
+    };
+
+    leitor.readAsDataURL(arquivo);
 
 });
 
-
-// Verifica edição
-
 const editar =
-localStorage.getItem("editarMembro");
-
+JSON.parse(localStorage.getItem("editarMembro"));
 
 const indice =
 localStorage.getItem("indiceMembro");
 
-
-
-if(editar){
-
-    const membro =
-    JSON.parse(editar);
-
+if (editar) {
 
     document.getElementById("nome").value =
-    membro.nome || "";
-
+    editar.nome || "";
 
     document.getElementById("usuario").value =
-    membro.usuario || "";
-
+    editar.usuario || "";
 
     document.getElementById("senha").value =
-    membro.senha || "";
-
+    editar.senha || "";
 
     document.getElementById("perfil").value =
-    membro.perfil || "Usuário";
-
-
-    document.getElementById("nascimento").value =
-    membro.nascimento || "";
-
+    editar.perfil || "Usuário";
 
     document.getElementById("telefone").value =
-    membro.telefone || "";
+    editar.telefone || "";
 
+    document.getElementById("nascimento").value =
+    editar.nascimento || "";
 
     document.getElementById("observacoes").value =
-    membro.observacoes || "";
+    editar.observacoes || "";
 
+    fotoBase64 = editar.foto || "";
 
-    fotoBase64 =
-    membro.foto || "";
-
-
-    if(fotoBase64){
+    if (fotoBase64 && preview) {
 
         preview.innerHTML =
         `<img src="${fotoBase64}">`;
@@ -92,88 +71,66 @@ if(editar){
 
 }
 
-
-
-
-formulario.addEventListener("submit", function(e){
+formulario.addEventListener("submit", function (e) {
 
     e.preventDefault();
-
 
     let membros =
     JSON.parse(localStorage.getItem("membros")) || [];
 
-
-
     const membro = {
 
+        id:
+        editar?.id ||
+        Date.now().toString(),
 
         nome:
-        document.getElementById("nome").value,
-
+        document.getElementById("nome").value.trim(),
 
         usuario:
-        document.getElementById("usuario").value,
-
+        document.getElementById("usuario").value.trim(),
 
         senha:
         document.getElementById("senha").value,
 
-
         perfil:
         document.getElementById("perfil").value,
-
-
-        nascimento:
-        document.getElementById("nascimento").value,
-
 
         telefone:
         document.getElementById("telefone").value,
 
+        nascimento:
+        document.getElementById("nascimento").value,
 
         observacoes:
         document.getElementById("observacoes").value,
-
 
         foto:
         fotoBase64
 
     };
 
+    if (indice !== null) {
 
+        membros[Number(indice)] = membro;
 
-    if(indice !== null){
-
-        membros[indice] = membro;
-
-    }else{
+    } else {
 
         membros.push(membro);
 
     }
-
-
 
     localStorage.setItem(
         "membros",
         JSON.stringify(membros)
     );
 
-
-
     localStorage.removeItem("editarMembro");
-
     localStorage.removeItem("indiceMembro");
-
-
 
     alert("✅ Membro salvo com sucesso!");
 
-
-
     window.location.href =
     "gerenciar-membros.html";
-
 
 });
