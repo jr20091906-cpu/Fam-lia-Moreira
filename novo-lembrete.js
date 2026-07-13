@@ -1,7 +1,53 @@
 // Família Moreira
-// Novo Lembrete v1.0
+// Novo Lembrete v2.0
 
 const formulario = document.getElementById("formLembrete");
+
+const selectResponsavel =
+document.getElementById("responsavel");
+
+
+// ===============================
+// Carregar membros cadastrados
+// ===============================
+
+function carregarMembros(){
+
+    if(!selectResponsavel) return;
+
+    const membros =
+    JSON.parse(localStorage.getItem("membros")) || [];
+
+    selectResponsavel.innerHTML = "";
+
+    selectResponsavel.innerHTML += `
+        <option value="todos">
+            👨‍👩‍👧‍👦 Todos
+        </option>
+    `;
+
+    membros
+    .sort((a,b)=>
+        a.nome.localeCompare(b.nome,"pt-BR")
+    )
+    .forEach((membro)=>{
+
+        selectResponsavel.innerHTML += `
+            <option value="${membro.nome}">
+                ${membro.nome}
+            </option>
+        `;
+
+    });
+
+}
+
+carregarMembros();
+
+
+// ===============================
+// Salvar lembrete
+// ===============================
 
 formulario.addEventListener("submit", function(e){
 
@@ -9,6 +55,8 @@ formulario.addEventListener("submit", function(e){
 
     let lembretes =
     JSON.parse(localStorage.getItem("lembretes")) || [];
+
+    const agora = new Date().toISOString();
 
     const lembrete = {
 
@@ -30,7 +78,10 @@ formulario.addEventListener("submit", function(e){
         document.getElementById("observacoes").value.trim(),
 
         criadoEm:
-        new Date().toISOString()
+        agora,
+
+        atualizadoEm:
+        agora
 
     };
 
