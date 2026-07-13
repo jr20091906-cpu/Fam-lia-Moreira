@@ -14,18 +14,39 @@
 
 <body>
 
+
 <div class="container">
+
 
 <header>
 
-<h1>👤 Novo Membro</h1>
+<h1>👤 Cadastro de Membro</h1>
 
-<p>Cadastro de membro da família.</p>
+<p>Adicione ou edite um membro da família.</p>
 
 </header>
 
 
+
 <form id="formMembro">
+
+
+
+<label>Foto do membro</label>
+
+<input 
+type="file"
+id="foto"
+accept="image/*">
+
+
+
+<div id="previewFoto">
+
+👤
+
+</div>
+
 
 
 <label>Nome completo</label>
@@ -36,27 +57,14 @@ id="nome"
 required>
 
 
-<label>Foto (opcional)</label>
+
+<label>Usuário de login</label>
 
 <input
-type="file"
-id="foto"
-accept="image/*">
+type="text"
+id="usuario"
+required>
 
-
-<label>Perfil</label>
-
-<select id="perfil">
-
-<option value="Administrador">
-👑 Administrador
-</option>
-
-<option value="Usuário">
-👤 Usuário
-</option>
-
-</select>
 
 
 <label>Senha</label>
@@ -67,11 +75,24 @@ id="senha"
 required>
 
 
-<label>Telefone</label>
 
-<input
-type="tel"
-id="telefone">
+<label>Perfil</label>
+
+<select id="perfil">
+
+
+<option value="Administrador">
+👑 Administrador
+</option>
+
+
+<option value="Usuário">
+👤 Usuário
+</option>
+
+
+</select>
+
 
 
 <label>Data de nascimento</label>
@@ -81,11 +102,20 @@ type="date"
 id="nascimento">
 
 
+
+<label>Telefone</label>
+
+<input
+type="tel"
+id="telefone">
+
+
+
 <label>Observações</label>
 
 <textarea
-id="observacoes"
-rows="4"></textarea>
+id="observacoes"></textarea>
+
 
 
 <button type="submit">
@@ -95,7 +125,9 @@ rows="4"></textarea>
 </button>
 
 
+
 </form>
+
 
 
 <a href="gerenciar-membros.html">
@@ -105,10 +137,13 @@ rows="4"></textarea>
 </a>
 
 
+
 </div>
 
 
+
 <script src="novo-membro.js"></script>
+
 
 </body>
 
