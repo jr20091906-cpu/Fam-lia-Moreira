@@ -1,45 +1,30 @@
 // Família Moreira
-// Dashboard v2.0
+// Dashboard v3.0
 
-const nome =
-localStorage.getItem("nome");
+const nome = localStorage.getItem("nome");
+const perfil = localStorage.getItem("perfil");
 
-const perfil =
-localStorage.getItem("perfil");
+const boasVindas = document.getElementById("boasVindas");
 
-
-// ======================
-// BOAS VINDAS
-// ======================
-
-const boasVindas =
-document.getElementById("boasVindas");
-
-
-if(boasVindas && nome){
+if (boasVindas && nome) {
 
     let icone = "";
 
-    if(perfil === "Administrador"){
+    if (perfil === "Administrador") {
         icone = " 👑";
     }
 
-    boasVindas.innerHTML =
-    "Bem-vindo, " + nome + icone;
+    boasVindas.innerHTML = "Bem-vindo, " + nome + icone;
 
 }
-
-
 
 // ======================
 // ADMINISTRAÇÃO
 // ======================
 
-const adminArea =
-document.getElementById("adminArea");
+const adminArea = document.getElementById("adminArea");
 
-
-if(adminArea && perfil === "Administrador"){
+if (adminArea && perfil === "Administrador") {
 
     adminArea.innerHTML = `
 
@@ -61,238 +46,150 @@ if(adminArea && perfil === "Administrador"){
 
 }
 
-
-
 // ======================
 // CONTADORES
 // ======================
 
-function quantidade(chave){
+function quantidade(chave) {
+
+    // Os cinco membros já existem no aplicativo
+    if (chave === "membros") {
+
+        return 5;
+
+    }
 
     const dados =
-    JSON.parse(localStorage.getItem(chave)) || [];
+        JSON.parse(localStorage.getItem(chave)) || [];
 
     return Array.isArray(dados)
-    ? dados.length
-    : 0;
+        ? dados.length
+        : 0;
 
 }
-
 
 const painelResumo =
 document.getElementById("painelResumo");
 
+if (painelResumo) {
 
-if(painelResumo){
+    painelResumo.innerHTML = `
 
-painelResumo.innerHTML = `
+    <div class="card">
 
-<div class="card">
+        <h2>👨‍👩‍👧‍👦 ${quantidade("membros")}</h2>
 
-<h2>👨‍👩‍👧‍👦 ${quantidade("membros")}</h2>
+        <p>Membros</p>
 
-<p>Membros</p>
+    </div>
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <h2>📅 ${quantidade("compromissos")}</h2>
 
-<h2>📅 ${quantidade("compromissos")}</h2>
+        <p>Agenda</p>
 
-<p>Agenda</p>
+    </div>
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <h2>✅ ${quantidade("tarefas")}</h2>
 
-<h2>✅ ${quantidade("tarefas")}</h2>
+        <p>Tarefas</p>
 
-<p>Tarefas</p>
+    </div>
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <h2>🏠 ${quantidade("rotinas")}</h2>
 
-<h2>🏠 ${quantidade("rotinas")}</h2>
+        <p>Rotinas</p>
 
-<p>Rotinas</p>
+    </div>
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <h2>📚 ${quantidade("registrosEscola")}</h2>
 
-<h2>📚 ${quantidade("registrosEscola")}</h2>
+        <p>Escola</p>
 
-<p>Escola</p>
+    </div>
 
-</div>
+    <div class="card">
 
-<div class="card">
+        <h2>🔔 ${quantidade("lembretes")}</h2>
 
-<h2>🔔 ${quantidade("lembretes")}</h2>
+        <p>Lembretes</p>
 
-<p>Lembretes</p>
+    </div>
 
-</div>
-
-`;
+    `;
 
 }
-
-
 
 // ======================
 // COMPROMISSOS DE HOJE
 // ======================
 
-function carregarCompromissosHoje(){
+function carregarCompromissosHoje() {
 
-const painel =
-document.getElementById("compromissosHoje");
+    const painel =
+    document.getElementById("compromissosHoje");
 
+    if (!painel) return;
 
-if(!painel) return;
+    const hoje =
+    new Date().toISOString().split("T")[0];
 
+    const compromissos =
+    JSON.parse(localStorage.getItem("compromissos")) || [];
 
-const hoje =
-new Date()
-.toISOString()
-.split("T")[0];
+    const lista =
+    compromissos.filter(item => item.data === hoje);
 
+    if (lista.length === 0) {
 
-const compromissos =
-JSON.parse(localStorage.getItem("compromissos")) || [];
+        painel.innerHTML = `
 
+        <div class="card">
 
-const lista =
-compromissos.filter(item =>
-item.data === hoje
-);
+            <h3>✅ Nenhum compromisso hoje</h3>
 
+        </div>
 
-if(lista.length === 0){
+        `;
 
-painel.innerHTML = `
+        return;
 
-<div class="card">
+    }
 
-<h3>✅ Nenhum compromisso hoje</h3>
+    painel.innerHTML = "";
 
-</div>
+    lista.sort((a, b) =>
+        (a.hora || "").localeCompare(b.hora || "")
+    );
 
-`;
+    lista.forEach(item => {
 
-return;
+        painel.innerHTML += `
 
-}
+        <div class="card">
 
+            <h3>${item.titulo}</h3>
 
-painel.innerHTML = "";
+            <p>🕒 ${item.hora || "--:--"}</p>
 
+            <p>👤 ${item.membro}</p>
 
-lista.forEach(item=>{
+            <p>📍 ${item.local || "-"}</p>
 
-painel.innerHTML += `
+        </div>
 
-<div class="card">
+        `;
 
-<h3>${item.titulo}</h3>
-
-<p>🕒 ${item.hora || "--:--"}</p>
-
-<p>👤 ${item.membro}</p>
-
-<p>📍 ${item.local || "-"}</p>
-
-</div>
-
-`;
-
-});
-
+    });
 
 }
-
-
 
 // ======================
-// LEMBRETES DE HOJE
-// ======================
-
-function carregarLembretesHoje(){
-
-const painel =
-document.getElementById("lembretesHoje");
-
-
-if(!painel) return;
-
-
-const hoje =
-new Date()
-.toISOString()
-.split("T")[0];
-
-
-const lembretes =
-JSON.parse(localStorage.getItem("lembretes")) || [];
-
-
-const lista =
-lembretes.filter(item =>
-item.data === hoje
-);
-
-
-
-if(lista.length === 0){
-
-painel.innerHTML = `
-
-<div class="card">
-
-<h3>✅ Nenhum lembrete hoje</h3>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-
-painel.innerHTML = "";
-
-
-lista.forEach(item=>{
-
-
-painel.innerHTML += `
-
-<div class="card">
-
-<h3>${item.titulo}</h3>
-
-<p>👤 ${item.responsavel}</p>
-
-<p>⭐ Prioridade: ${item.prioridade}</p>
-
-<p>📝 ${item.observacoes || "-"}</p>
-
-</div>
-
-`;
-
-
-});
-
-
-}
-
-
-
-carregarCompromissosHoje();
-
-carregarLembretesHoje();
+//
