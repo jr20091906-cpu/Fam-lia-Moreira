@@ -46,7 +46,6 @@ body{
 
 }
 
-
 /*=========================
 PAINEL RESUMO
 ==========================*/
@@ -61,33 +60,44 @@ PAINEL RESUMO
 
     max-width:700px;
 
+    margin:0 auto 25px auto;
+
+}
+
+/*=========================
+COMPROMISSOS DE HOJE
+==========================*/
+
+.painelHoje{
+
+    max-width:700px;
+
     margin:0 auto 30px auto;
 
 }
 
-#painelResumo .card{
+.painelHoje h2{
 
-    padding:18px;
+    margin-bottom:15px;
 
-}
+    text-align:center;
 
-#painelResumo .card h2{
-
-    font-size:32px;
-
-    margin-bottom:8px;
+    font-size:24px;
 
 }
 
-#painelResumo .card p{
+#compromissosHoje{
 
-    font-size:14px;
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
 
 }
-
 
 /*=========================
-MENU PRINCIPAL
+MENU
 ==========================*/
 
 .menu{
@@ -120,7 +130,7 @@ MENU PRINCIPAL
 
     border-radius:20px;
 
-    padding:25px 15px;
+    padding:22px;
 
     text-align:center;
 
@@ -142,12 +152,68 @@ MENU PRINCIPAL
 
 .card h2{
 
-    font-size:42px;
+    font-size:40px;
 
-    margin-bottom:12px;
+    margin-bottom:10px;
 
 }
 
 .card h3{
 
-    font-size:20
+    font-size:20px;
+
+    margin-bottom:10px;
+
+}
+
+.card p{
+
+    font-size:14px;
+
+    color:#dcfce7;
+
+    line-height:22px;
+
+}
+
+/*=========================
+RESPONSIVO
+==========================*/
+
+@media(max-width:650px){
+
+    #painelResumo{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .menu{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:430px){
+
+    #painelResumo{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .dashboard{
+
+        padding:15px;
+
+    }
+
+    .dashboard-topo h1{
+
+        font-size:26px;
+
+    }
+
+}
