@@ -26,11 +26,21 @@ Bem-vindo
 
 </header>
 
-
 <section id="painelResumo" class="menu">
 
 </section>
 
+<section class="painelHoje">
+
+<h2>📅 Compromissos de Hoje</h2>
+
+<div id="compromissosHoje">
+
+<p>Carregando...</p>
+
+</div>
+
+</section>
 
 <section class="menu">
 
@@ -48,7 +58,6 @@ Bem-vindo
 
 </a>
 
-
 <a href="tarefas.html">
 
 <div class="card">
@@ -62,7 +71,6 @@ Bem-vindo
 </div>
 
 </a>
-
 
 <a href="escola.html">
 
@@ -78,7 +86,6 @@ Bem-vindo
 
 </a>
 
-
 <a href="rotina.html">
 
 <div class="card">
@@ -92,7 +99,6 @@ Bem-vindo
 </div>
 
 </a>
-
 
 <a href="lembretes.html">
 
@@ -108,7 +114,6 @@ Bem-vindo
 
 </a>
 
-
 <a href="familia.html">
 
 <div class="card">
@@ -123,9 +128,7 @@ Bem-vindo
 
 </a>
 
-
 <div id="adminArea"></div>
-
 
 <a href="logout.html">
 
@@ -159,7 +162,7 @@ if(nome){
     }
 
     document.getElementById("boasVindas").innerHTML =
-    "Bem-vindo, "+nome+icone;
+    "Bem-vindo, " + nome + icone;
 
 }
 
@@ -185,74 +188,9 @@ if(perfil==="Administrador"){
 
 }
 
-
-// ======================
-// PAINEL RESUMO
-// ======================
-
 function quantidade(chave){
 
     const dados =
     JSON.parse(localStorage.getItem(chave)) || [];
 
-    return dados.length;
-
-}
-
-document.getElementById("painelResumo").innerHTML = `
-
-<div class="card">
-
-<h2>👨‍👩‍👧‍👦 ${quantidade("membros")}</h2>
-
-<p>Membros</p>
-
-</div>
-
-<div class="card">
-
-<h2>📅 ${quantidade("compromissos")}</h2>
-
-<p>Agenda</p>
-
-</div>
-
-<div class="card">
-
-<h2>✅ ${quantidade("tarefas")}</h2>
-
-<p>Tarefas</p>
-
-</div>
-
-<div class="card">
-
-<h2>🏠 ${quantidade("rotinas")}</h2>
-
-<p>Rotinas</p>
-
-</div>
-
-<div class="card">
-
-<h2>📚 ${quantidade("registrosEscola")}</h2>
-
-<p>Escola</p>
-
-</div>
-
-<div class="card">
-
-<h2>🔔 ${quantidade("lembretes")}</h2>
-
-<p>Lembretes</p>
-
-</div>
-
-`;
-
-</script>
-
-</body>
-
-</html>
+    return Array.isArray(dados) ? dados.length : 0;
