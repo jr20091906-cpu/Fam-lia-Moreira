@@ -1,5 +1,5 @@
 // Família Moreira
-// Dashboard v1.0
+// Dashboard v2.0
 
 const nome =
 localStorage.getItem("nome");
@@ -21,9 +21,7 @@ if(boasVindas && nome){
     let icone = "";
 
     if(perfil === "Administrador"){
-
         icone = " 👑";
-
     }
 
     boasVindas.innerHTML =
@@ -34,7 +32,7 @@ if(boasVindas && nome){
 
 
 // ======================
-// ÁREA ADMINISTRADOR
+// ADMINISTRAÇÃO
 // ======================
 
 const adminArea =
@@ -42,7 +40,6 @@ document.getElementById("adminArea");
 
 
 if(adminArea && perfil === "Administrador"){
-
 
     adminArea.innerHTML = `
 
@@ -82,16 +79,13 @@ function quantidade(chave){
 }
 
 
-
 const painelResumo =
 document.getElementById("painelResumo");
 
 
 if(painelResumo){
 
-
 painelResumo.innerHTML = `
-
 
 <div class="card">
 
@@ -101,8 +95,6 @@ painelResumo.innerHTML = `
 
 </div>
 
-
-
 <div class="card">
 
 <h2>📅 ${quantidade("compromissos")}</h2>
@@ -110,8 +102,6 @@ painelResumo.innerHTML = `
 <p>Agenda</p>
 
 </div>
-
-
 
 <div class="card">
 
@@ -121,8 +111,6 @@ painelResumo.innerHTML = `
 
 </div>
 
-
-
 <div class="card">
 
 <h2>🏠 ${quantidade("rotinas")}</h2>
@@ -130,8 +118,6 @@ painelResumo.innerHTML = `
 <p>Rotinas</p>
 
 </div>
-
-
 
 <div class="card">
 
@@ -141,8 +127,6 @@ painelResumo.innerHTML = `
 
 </div>
 
-
-
 <div class="card">
 
 <h2>🔔 ${quantidade("lembretes")}</h2>
@@ -150,7 +134,6 @@ painelResumo.innerHTML = `
 <p>Lembretes</p>
 
 </div>
-
 
 `;
 
@@ -164,13 +147,11 @@ painelResumo.innerHTML = `
 
 function carregarCompromissosHoje(){
 
-
 const painel =
 document.getElementById("compromissosHoje");
 
 
 if(!painel) return;
-
 
 
 const hoje =
@@ -179,46 +160,39 @@ new Date()
 .split("T")[0];
 
 
-
 const compromissos =
 JSON.parse(localStorage.getItem("compromissos")) || [];
 
 
-
-const listaHoje =
-compromissos
-.filter(item => item.data === hoje);
-
-
-
-if(listaHoje.length === 0){
+const lista =
+compromissos.filter(item =>
+item.data === hoje
+);
 
 
-    painel.innerHTML = `
+if(lista.length === 0){
 
-    <div class="card">
+painel.innerHTML = `
 
-    <h3>✅ Nenhum compromisso para hoje</h3>
+<div class="card">
 
-    </div>
+<h3>✅ Nenhum compromisso hoje</h3>
 
-    `;
+</div>
 
-    return;
+`;
+
+return;
 
 }
-
 
 
 painel.innerHTML = "";
 
 
-
-listaHoje.forEach(item=>{
-
+lista.forEach(item=>{
 
 painel.innerHTML += `
-
 
 <div class="card">
 
@@ -232,6 +206,82 @@ painel.innerHTML += `
 
 </div>
 
+`;
+
+});
+
+
+}
+
+
+
+// ======================
+// LEMBRETES DE HOJE
+// ======================
+
+function carregarLembretesHoje(){
+
+const painel =
+document.getElementById("lembretesHoje");
+
+
+if(!painel) return;
+
+
+const hoje =
+new Date()
+.toISOString()
+.split("T")[0];
+
+
+const lembretes =
+JSON.parse(localStorage.getItem("lembretes")) || [];
+
+
+const lista =
+lembretes.filter(item =>
+item.data === hoje
+);
+
+
+
+if(lista.length === 0){
+
+painel.innerHTML = `
+
+<div class="card">
+
+<h3>✅ Nenhum lembrete hoje</h3>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+
+painel.innerHTML = "";
+
+
+lista.forEach(item=>{
+
+
+painel.innerHTML += `
+
+<div class="card">
+
+<h3>${item.titulo}</h3>
+
+<p>👤 ${item.responsavel}</p>
+
+<p>⭐ Prioridade: ${item.prioridade}</p>
+
+<p>📝 ${item.observacoes || "-"}</p>
+
+</div>
 
 `;
 
@@ -242,4 +292,7 @@ painel.innerHTML += `
 }
 
 
+
 carregarCompromissosHoje();
+
+carregarLembretesHoje();
