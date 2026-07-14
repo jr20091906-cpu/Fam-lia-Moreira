@@ -12,9 +12,12 @@
 
 </head>
 
+
 <body>
 
+
 <div class="dashboard">
+
 
 <header class="dashboard-topo">
 
@@ -26,9 +29,13 @@ Bem-vindo
 
 </header>
 
+
+
 <section id="painelResumo" class="menu">
 
 </section>
+
+
 
 <section class="painelHoje">
 
@@ -42,7 +49,12 @@ Bem-vindo
 
 </section>
 
+
+
+
 <section class="menu">
+
+
 
 <a href="agenda.html">
 
@@ -58,6 +70,9 @@ Bem-vindo
 
 </a>
 
+
+
+
 <a href="tarefas.html">
 
 <div class="card">
@@ -71,6 +86,9 @@ Bem-vindo
 </div>
 
 </a>
+
+
+
 
 <a href="escola.html">
 
@@ -86,6 +104,9 @@ Bem-vindo
 
 </a>
 
+
+
+
 <a href="rotina.html">
 
 <div class="card">
@@ -99,6 +120,9 @@ Bem-vindo
 </div>
 
 </a>
+
+
+
 
 <a href="lembretes.html">
 
@@ -114,6 +138,9 @@ Bem-vindo
 
 </a>
 
+
+
+
 <a href="familia.html">
 
 <div class="card">
@@ -128,7 +155,13 @@ Bem-vindo
 
 </a>
 
+
+
+
 <div id="adminArea"></div>
+
+
+
 
 <a href="logout.html">
 
@@ -144,53 +177,19 @@ Bem-vindo
 
 </a>
 
+
+
 </section>
+
+
 
 </div>
 
-<script>
 
-const nome = localStorage.getItem("nome");
-const perfil = localStorage.getItem("perfil");
 
-if(nome){
+<script src="dashboard.js"></script>
 
-    let icone="";
 
-    if(perfil==="Administrador"){
-        icone=" 👑";
-    }
+</body>
 
-    document.getElementById("boasVindas").innerHTML =
-    "Bem-vindo, " + nome + icone;
-
-}
-
-if(perfil==="Administrador"){
-
-    document.getElementById("adminArea").innerHTML=`
-
-    <a href="admin.html">
-
-        <div class="card">
-
-            <h2>⚙️</h2>
-
-            <h3>Administração</h3>
-
-            <p>Controle do aplicativo</p>
-
-        </div>
-
-    </a>
-
-    `;
-
-}
-
-function quantidade(chave){
-
-    const dados =
-    JSON.parse(localStorage.getItem(chave)) || [];
-
-    return Array.isArray(dados) ? dados.length : 0;
+</html>
