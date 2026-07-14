@@ -1,14 +1,20 @@
 // Família Moreira
-// Agenda v4.0
+// Agenda v4.1
 
 const lista = document.getElementById("listaCompromissos");
 const pesquisa = document.getElementById("pesquisa");
 const filtro = document.getElementById("filtro");
 const botao = document.getElementById("novoCompromisso");
 
-botao.addEventListener("click", () => {
-    window.location.href = "novo-compromisso.html";
-});
+if(botao){
+
+    botao.addEventListener("click", () => {
+
+        window.location.href = "novo-compromisso.html";
+
+    });
+
+}
 
 function formatarData(data){
 
@@ -91,4 +97,121 @@ function carregarCompromissos(){
 
             <p>Cadastre um novo compromisso.</p>
 
-        </
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    resultado.forEach((compromisso)=>{
+
+        const indice =
+        compromissos.findIndex(
+            c => c.id === compromisso.id
+        );
+
+        lista.innerHTML += `
+
+        <div class="card">
+
+            <h2>${compromisso.titulo}</h2>
+
+            <p>👤 ${compromisso.membro}</p>
+
+            <p>📅 ${formatarData(compromisso.data)}</p>
+
+            <p>🕒 ${compromisso.hora || "-"}</p>
+
+            <p>📍 ${compromisso.local || "-"}</p>
+
+            <p>📝 ${compromisso.observacoes || "-"}</p>
+
+            <p><strong>${diasRestantes(compromisso.data)}</strong></p>
+
+            <div class="acoes-card">
+
+                <button onclick="editarCompromisso(${indice})">
+
+                    ✏️ Editar
+
+                </button>
+
+                <button onclick="excluirCompromisso(${indice})">
+
+                    🗑️ Excluir
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+function excluirCompromisso(index){
+
+    let compromissos =
+    JSON.parse(localStorage.getItem("compromissos")) || [];
+
+    if(confirm("Deseja excluir este compromisso?")){
+
+        compromissos.splice(index,1);
+
+        localStorage.setItem(
+            "compromissos",
+            JSON.stringify(compromissos)
+        );
+
+        carregarCompromissos();
+
+    }
+
+}
+
+function editarCompromisso(index){
+
+    let compromissos =
+    JSON.parse(localStorage.getItem("compromissos")) || [];
+
+    const item = compromissos[index];
+
+    localStorage.setItem(
+        "editarCompromisso",
+        JSON.stringify(item)
+    );
+
+    localStorage.setItem(
+        "indiceEdicao",
+        index
+    );
+
+    window.location.href =
+    "novo-compromisso.html";
+
+}
+
+if(pesquisa){
+
+    pesquisa.addEventListener(
+        "input",
+        carregarCompromissos
+    );
+
+}
+
+if(filtro){
+
+    filtro.addEventListener(
+        "change",
+        carregarCompromissos
+    );
+
+}
+
+carregarCompromissos();
